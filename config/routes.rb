@@ -8,8 +8,8 @@ Groupquiz::Application.routes.draw do
   root :to => "users#index"
   match "/auth/facebook/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout  
-  resources :comments
-  resources :articles
+  resources :users
+  #resources :articles
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
