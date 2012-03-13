@@ -1,7 +1,15 @@
 Groupquiz::Application.routes.draw do
+  get "sessions/create"
+
   get "users/index"
 
   get "users/callback"
+
+  root :to => "users#index"
+  match "/auth/facebook/callback" => "sessions#create"
+  match "/signout" => "sessions#destroy", :as => :signout  
+  resources :comments
+  resources :articles
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
