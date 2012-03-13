@@ -1,4 +1,8 @@
 Groupquiz::Application.routes.draw do
+  get "users/index"
+
+  get "users/callback"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
