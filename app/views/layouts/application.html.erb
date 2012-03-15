@@ -39,14 +39,16 @@
               <li><a href="/features/">特徴</a></li>
               <li><a href="/plans/">料金プラン</a></li>
               <li><a href="/supports/">サポート</a></li>
-              <li><% if current_user %>  
-                <%= link_to current_user.name+"としてログインしています", "/users/" %></li>
-                <li><%=  link_to "ログアウト",  signout_path %> 
+            </ul>
+            <p class="navbar-text pull-right">
+            <% if current_user %>  
+                <%= link_to current_user.name+"としてログインしています", "/users/" %>
+                <%= link_to "ログアウト",  signout_path %> 
               <% else %>
 <fb:login-button scope="email, user_education_history, user_work_history, user_location, user_interests, user_activities, friends_education_history, friends_work_history, friends_location, friends_interests, friends_activities" size="medium" class="fb_connect_button"><a href="/auth/facebook" class="fb_button fb_button_medium"><span class="fb_button_text">Log In</span></a></fb:login-button>
               <% end %>
-              </li>
-            </ul>
+              </p>
+
           </div><!--/.nav-collapse -->
         </div>
       </div>
