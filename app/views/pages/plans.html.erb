@@ -17,68 +17,68 @@
       <tbody>
         <tr class="price">
           <th>価格</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">無料</td>
           <td class="personal">いくら</td>
           <td class="business">いくら</td>
         </tr>
         <tr class="users">
           <th>ユーザー数</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">1</td>
           <td class="personal">1</td>
           <td class="business">いくら</td>
         </tr>
         <tr class="storage">
           <th>ストレージ容量</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">20MB</td>
           <td class="personal">1</td>
           <td class="business">いくら</td>
         </tr>
         <tr class="contact">
           <th>コンタクト可能数</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">20MB</td>
           <td class="personal">1</td>
           <td class="business">いくら</td>
         </tr>
         <tr class="groups">
           <th>参加可能グループ数</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">20MB</td>
           <td class="personal">1</td>
           <td class="business">いくら</td>
         </tr>
         <tr class="smartphone">
           <th>スマートフォン対応</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">○ </td>
           <td class="personal">○ </td>
           <td class="business">○ </td>
         </tr>
         <tr class="advertisement">
           <th>広告非表示</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">× </td>
           <td class="personal">○ </td>
           <td class="business">○ </td>
         </tr>
         <tr class="search">
           <th>問題検索</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">× </td>
           <td class="personal">○ </td>
           <td class="business">○ </td>
         </tr>
         <tr class="management">
           <th>ユーザー管理</th>
-          <td class="tooltip">&nbsp;</td>
+          <td class="tips"> <%= image_tag("help.png") %> </td>
           <td class="free">× </td>
           <td class="personal">○ </td>
           <td class="business">○ </td>
         </tr>
-     </tbody>
+      </tbody>
     </table>
   </div>
 
@@ -101,4 +101,19 @@
       <p><a class="btn" href="#">機能を見る &raquo;</a></p>
     </div>
   </div>
-
+  <script type="text/javascript">
+    $(function(){
+      $("[title]").mbTooltip({ // also $([domElement]).mbTooltip  >>  in this case only children element are involved
+        opacity : .97,       //opacity
+        wait:1200,           //before show
+        cssClass:"default",  // default = default
+        timePerWord:70,      //time to show in milliseconds per word
+        hasArrow:false,     // if you whant a little arrow on the corner
+        hasShadow:true,
+        imgPath:"/assets/images/",
+        ancor:"mouse", //"parent"  you can ancor the tooltip to the mouse position or at the bottom of the element
+        shadowColor:"black", //the color of the shadow
+        mb_fade:200 //the time to fade-in
+      });
+    });
+  </script>
