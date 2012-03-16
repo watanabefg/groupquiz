@@ -29,12 +29,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Groupquiz</a>
+          <a class="brand" href="/">Groupquiz</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="/">ホーム</a></li>
+              <li><a href="/features/">特徴</a></li>
+              <li><a href="/plans/">料金プラン</a></li>
+              <li><a href="/supports/">サポート</a></li>
               <li><% if current_user %>  
                 Welcome, <%= current_user.name %>! </li>
                 <li><%=  link_to "Sign Out",  signout_path %> 
@@ -78,6 +79,40 @@
       <hr>
 
       <footer>
+      <div class="row">
+        <div class="span3">
+          <h3>Groupquiz</h3>
+          <ul>
+            <li>ホーム</li>
+            <li>特徴</li>
+            <li>料金プラン</li>
+          </ul>
+        </div>
+        <div class="span3">
+          <h3>Community</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>パブリックグループ</li>
+          </ul>
+        </div>
+        <div class="span3">
+          <h3>Support</h3>
+          <ul>
+            <li>FAQ</li>
+            <li>フィードバック</li>
+            <li>お問い合わせ</li>
+          </ul>
+        </div>
+        <div class="span3">
+          <h3>About Us</h3>
+          <ul>
+            <li>pulesについて</li>
+            <li>プライバシーポリシー</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+      </div>
+      <p>Groupquizをあなたの友達におすすめしよう！</p>
       <p>&copy; pules 2012</p>
       </footer>
     </div>
