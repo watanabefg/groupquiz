@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <meta charset="utf-8">
     <title>Groupquiz:クイズで楽しく情報共有</title>
@@ -12,6 +12,7 @@
         padding-bottom: 40px;
       }
     </style>
+    <script src="/scripts/facebook/login.js" type="text/javascript"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,6 +22,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+<div id="fb-root" class=" fb_reset"><script async="" src="http://connect.facebook.net/en_US/all.js"></script><div style="position: absolute; top: -10000px; height: 0pt; width: 0pt;"></div></div>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -37,10 +39,10 @@
               <li><a href="/plans/">料金プラン</a></li>
               <li><a href="/supports/">サポート</a></li>
               <li><% if current_user %>  
-                Welcome, <%= current_user.name %>! </li>
+                <%= link_to current_user.name+"としてログインしています", "/users/" %></li>
                 <li><%=  link_to "Sign Out",  signout_path %> 
-              <% else %>  
-                <%=  link_to "Sign in with Facebook",  "/auth/facebook" %>
+              <% else %>
+<fb:login-button scope="email, user_education_history, user_work_history, user_location, user_interests, user_activities, friends_education_history, friends_work_history, friends_location, friends_interests, friends_activities" size="medium" class="fb_connect_button"><a href="/auth/facebook" class="fb_button fb_button_medium"><span class="fb_button_text">Log In</span></a></fb:login-button>
               <% end %>
               </li>
             </ul>
@@ -49,32 +51,6 @@
       </div>
     </div>
     <div class="container">
-      <!--
-      <div class="hero-unit">
-        <h1>Hello, World!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-      </div>
-
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div>
-      -->
-
       <%= yield %>
       <hr>
 
@@ -83,32 +59,32 @@
         <div class="span3">
           <h3>Groupquiz</h3>
           <ul>
-            <li>ホーム</li>
-            <li>特徴</li>
-            <li>料金プラン</li>
+            <li><a href="/" title="ホーム">ホーム</a></li>
+            <li><a href="/features/" title="特徴">特徴</a></li>
+            <li><a href="/plans/" title="料金プラン">料金プラン</a></li>
           </ul>
         </div>
         <div class="span3">
           <h3>Community</h3>
           <ul>
-            <li>Facebook</li>
-            <li>パブリックグループ</li>
+            <li><a href="http://www.facebook.com/groupquiz">Facebook</a></li>
+            <li><a href="#">パブリックグループ</a></li>
           </ul>
         </div>
         <div class="span3">
           <h3>Support</h3>
           <ul>
-            <li>FAQ</li>
-            <li>フィードバック</li>
-            <li>お問い合わせ</li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">フィードバック</a></li>
+            <li><a href="#">お問い合わせ</a></li>
           </ul>
         </div>
         <div class="span3">
           <h3>About Us</h3>
           <ul>
-            <li>pulesについて</li>
-            <li>プライバシーポリシー</li>
-            <li>Blog</li>
+            <li><a href="#">pulesについて</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">Blog</a></li>
           </ul>
         </div>
       </div>
