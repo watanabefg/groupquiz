@@ -1,0 +1,28 @@
+<div class="row-fluid">
+  <div class="span3">
+    <div class="well sidebar-nav">
+      <ul>
+        <li>全て</li>
+        <li>自分がオーナー</li>
+        <li>参加中</li>
+      </ul>
+    </div>
+  </div>
+  <div class="span9">
+    <h1>グループの一覧</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= link_to 'グループ名▼', 'ordergroup' %></th><th><%= link_to 'オーナー', 'orderowner' %></th><th><%= link_to '更新日', 'orderupdated' %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group.each do |g| %>
+          <tr>
+            <td><%= link_to g.title, g %></td><td><%= g.user_id %></td><td><%= g.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,5 +1,8 @@
 <h1><%= @group.title %></h1>
-<p>このグループは<%= current_user.name %>によって作成されました。</p>
+<p>このグループは
+<% if current_user %>
+  <%= current_user.name %>
+<% end %>によって作成されました。</p>
 <div class="row-fluid">
   <div class="span9">
     <h2>このグループにあるクイズ</h2>

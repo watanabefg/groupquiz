@@ -5,6 +5,26 @@ class GroupsController < ApplicationController
     @title = "グループの作成|Groupquiz:クイズで楽しく情報共有"
   end
 
+  def index
+    @group = Group.all
+    @title = "グループの一覧"
+  end
+
+  def ordergroup
+    @group = Group.all(:order => 'title desc', :limit => 20)
+    @title = "グループの一覧"
+  end
+
+  def orderowner
+    @group = Group.all(:order => 'user_id desc', :limit => 20)
+    @title = "グループの一覧"
+  end
+
+  def orderupdated
+    @group = Group.all(:order => 'updated_at desc', :limit => 20)
+    @title = "グループの一覧"
+  end
+
   def create
     @group = Group.new(params[:group])
     if @group.save
