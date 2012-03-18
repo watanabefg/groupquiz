@@ -18,4 +18,22 @@ describe GroupsController do
     end
   end
 
+  describe "GET 'show'" do
+    before(:each) do
+      @group = Factory(:group)
+    end
+    it "returns http success" do
+      get 'show', :id => @group
+      response.should be_success
+    end
+    it "正しいグループを表示していること" do
+      get 'show', :id => @group
+      assigns(:group).should == @group
+    end
+    it "タイトルの検証" do
+      get 'show', :id => @group
+      response.should have_selector("title", :content => @group.title)
+    end
+  end # get 'show'
+
 end
