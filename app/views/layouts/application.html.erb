@@ -35,14 +35,12 @@
           <a class="brand" href="/">Groupquiz</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="/">ホーム</a></li>
-              <li><a href="/features/">特徴</a></li>
-              <li><a href="/plans/">料金プラン</a></li>
-              <li><a href="/supports/">サポート</a></li>
+              <li><a href="/groups/">グループ</a></li>
+              <li><a href="/users/">設定</a></li>
             </ul>
             <p class="navbar-text pull-right">
             <% if current_user %>  
-                <%= link_to current_user.name+"としてログインしています", "/users/" %>
+              <%= current_user.name %>
                 <%= link_to "ログアウト",  signout_path %> 
               <% else %>
 <fb:login-button scope="email, user_education_history, user_work_history, user_location, user_interests, user_activities, friends_education_history, friends_work_history, friends_location, friends_interests, friends_activities" size="medium" class="fb_connect_button"><a href="/auth/facebook" class="fb_button fb_button_medium"><span class="fb_button_text">Log In</span></a></fb:login-button>
