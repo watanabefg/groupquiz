@@ -30,7 +30,6 @@ describe GroupsController do
   describe "GET 'show'" do
     before(:each) do
       @group = Factory(:group)
-      @current_user = {:name => "Hironori Watanabe"}
     end
     it "returns http success" do
       get 'show', :id => @group

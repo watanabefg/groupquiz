@@ -38,6 +38,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @user = @group.users
     @title = @group.title
   end
 
