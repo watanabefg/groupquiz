@@ -1,0 +1,6 @@
+<h1>グループの作成</h1>
+<%= form_for(@group) do |f| %>
+  <%= f.label :title,  "グループ名" %>
+  <%= f.text_field :title%>
+  <%= f.submit "新規登録" %>
+<% end %>
