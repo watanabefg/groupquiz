@@ -1,6 +1,7 @@
 <h1>新しいグループの作成</h1>
 <p>皆と遊ぶためのクイズグループを作成しましょう。</p>
 <%= form_for @group , :html => { :class => "well form-inline" } do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.label :title,  "グループ名" %>
   <%= f.text_field :title%>
   <%= f.button "新規登録", :class => "btn" %>
