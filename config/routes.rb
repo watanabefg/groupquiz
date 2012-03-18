@@ -9,7 +9,7 @@ Groupquiz::Application.routes.draw do
 
   get "users/callback"
 
-  root :to => "pages#home"
+  root :to => "users#index"
   match "/auth/facebook/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout  
   match "/features" => "pages#features"
