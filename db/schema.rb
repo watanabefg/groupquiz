@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313093151) do
+ActiveRecord::Schema.define(:version => 20120318074227) do
+
+  create_table "belongs_to_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "belongs_to_groups", ["group_id"], :name => "index_belongs_to_groups_on_group_id"
+  add_index "belongs_to_groups", ["user_id"], :name => "index_belongs_to_groups_on_user_id"
+
+  create_table "groups", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider"

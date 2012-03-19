@@ -2424,7 +2424,7 @@ input[type="submit"].btn.btn-mini {
   opacity: 0.75;
   filter: alpha(opacity=75);
 }
-.alert {
+.alert, .flash {
   padding: 8px 35px 8px 14px;
   margin-bottom: 18px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -2444,18 +2444,18 @@ input[type="submit"].btn.btn-mini {
   right: -21px;
   line-height: 18px;
 }
-.alert-success {
+.alert-success, div.success {
   background-color: #bedebe;
   border-color: #b4d5ad;
   color: #333333;
 }
 .alert-danger,
-.alert-error {
+.alert-error, div.danger, div.error {
   background-color: #ffe9e9;
   border-color: #ffdae0;
   color: #393939;
 }
-.alert-info {
+.alert-info, div.info {
   background-color: #e4f0ff;
   border-color: #c0e7ff;
   color: #1b3650;
