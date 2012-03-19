@@ -23,7 +23,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-<div id="fb-root" class=" fb_reset"><script async="" src="http://connect.facebook.net/en_US/all.js"></script><div style="position: absolute; top: -10000px; height: 0pt; width: 0pt;"></div></div>
+    <div id="fb-root" class=" fb_reset"><script async="" src="http://connect.facebook.net/en_US/all.js"></script><div style="position: absolute; top: -10000px; height: 0pt; width: 0pt;"></div></div>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -35,17 +35,28 @@
           <a class="brand" href="/">Groupquiz</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="/groups/">グループ</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  グループ
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- dropdown menu links -->
+                  <li><a href="/groups/">グループを見る</a></li>
+                  <li><a href="/groups/new">グループを作成する</a></li>
+                  <li><a href="/groups/new">グループから抜ける</a></li>
+                </ul>
+              </li>
               <li><a href="/users/">設定</a></li>
             </ul>
             <p class="navbar-text pull-right">
             <% if current_user %>  
               <%= current_user.name %>
-                <%= link_to "ログアウト",  signout_path %> 
-              <% else %>
-<fb:login-button scope="email, user_education_history, user_work_history, user_location, user_interests, user_activities, friends_education_history, friends_work_history, friends_location, friends_interests, friends_activities" size="medium" class="fb_connect_button"><a href="/auth/facebook" class="fb_button fb_button_medium"><span class="fb_button_text">Log In</span></a></fb:login-button>
-              <% end %>
-              </p>
+              <%= link_to "ログアウト",  signout_path %> 
+            <% else %>
+              <fb:login-button scope="email, user_education_history, user_work_history, user_location, user_interests, user_activities, friends_education_history, friends_work_history, friends_location, friends_interests, friends_activities" size="medium" class="fb_connect_button"><a href="/auth/facebook" class="fb_button fb_button_medium"><span class="fb_button_text">Log In</span></a></fb:login-button>
+            <% end %>
+            </p>
 
           </div><!--/.nav-collapse -->
         </div>
