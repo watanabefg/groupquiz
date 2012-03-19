@@ -1,4 +1,8 @@
 Groupquiz::Application.routes.draw do
+  get "users/update"
+
+  get "users/edit"
+
   get "pages/home"
   get "pages/features"
   get "pages/plans"

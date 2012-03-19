@@ -1,0 +1,12 @@
+<h1>アカウント編集画面</h1>
+
+<%= form_for @User do |f| %>
+<ul>
+    <li>ID: <%= f.text_field :id %></li>
+    <li>氏名: <%= f.text_field :name %></li>
+    <li>E-mail: <%= f.text_field :email %></li>
+</ul>
+<%= f.submit '登録' %>
+<% end %>
+
+<%= link_to "一覧", students_path %>
