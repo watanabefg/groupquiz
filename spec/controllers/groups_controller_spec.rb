@@ -30,6 +30,8 @@ describe GroupsController do
   describe "GET 'show'" do
     before(:each) do
       @group = Factory(:group)
+      @user = Factory(:user)
+      @belongs_to_group = Factory(:belongs_to_group)
     end
     it "returns http success" do
       get 'show', :id => @group
@@ -42,6 +44,10 @@ describe GroupsController do
     it "タイトルの検証" do
       get 'show', :id => @group
       response.should have_selector("title", :content => @group.title)
+    end
+    it "正しいユーザーを表示していること" do
+      get 'show', :id => @group
+      assigns(:user).should == [@user]
     end
   end # get 'show'
 

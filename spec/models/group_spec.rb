@@ -59,8 +59,8 @@ describe Group do
     end
 
     it "ユーザーが作成可能グループ数を超えてグループを作ろうとすると検証NGであること" do
-      group = Group.new(@group)
-      group.should be_valid
+      group = Group.new(@attr)
+      group.should_not be_valid
     end
   end
 end
