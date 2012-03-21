@@ -30,6 +30,8 @@ describe GroupsController do
   describe "GET 'show'" do
     before(:each) do
       @group = Factory(:group)
+      @user = Factory(:user)
+      @belongs_to_group = Factory(:belongs_to_group)
     end
     it "returns http success" do
       get 'show', :id => @group
@@ -42,6 +44,10 @@ describe GroupsController do
     it "タイトルの検証" do
       get 'show', :id => @group
       response.should have_selector("title", :content => @group.title)
+    end
+    it "正しいユーザーを表示していること" do
+      get 'show', :id => @group
+      assigns(:user).should == [@user]
     end
   end # get 'show'
 
@@ -78,6 +84,11 @@ describe GroupsController do
         post :create, :group => @attr
         response.should redirect_to(group_path(assigns(:group))) 
       end 
+      it "関連モデルにもデータが登録されていること" do
+        lambda do 
+          post :create, :group => @attr
+        end.should change(BelongsToGroup, :count).by(1) 
+      end
       it "登録に成功した旨をユーザーに表示していること" do 
         post :create, :group => @attr
         flash[:success].should =~ /登録に成功しました/ 

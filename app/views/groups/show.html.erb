@@ -1,5 +1,7 @@
 <h1><%= @group.title %></h1>
-<p>このグループは<%= @user.name %>によって作成されました。</p>
+<% @user.each do |u| %>
+<p>このグループは<%= u.name %>によって作成されました。</p>
+<% end %>
 <div class="row-fluid">
   <div class="span9">
     <h2>このグループにあるクイズ</h2>
@@ -8,6 +10,10 @@
   <div class="span3">
     <div class="well sidebar-nav">
       <h3>グループメンバー一覧</h3>
+      <p>ここ間違ってるけど。</p>
+      <% @user.each do |u| %>
+      <p><%= u.name %></p>
+      <% end %>
   </div>
   </div>
 </div>

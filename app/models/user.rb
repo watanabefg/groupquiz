@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessible :name
   has_many :belongs_to_groups, :foreign_key => "user_id", :dependent => :destroy
   has_many :groups, :through => :belongs_to_users
 
