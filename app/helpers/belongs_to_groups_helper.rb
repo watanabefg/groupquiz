@@ -1,0 +1,2 @@
+module BelongsToGroupsHelper
+end

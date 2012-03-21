@@ -11,6 +11,7 @@ describe BelongsToGroup do
   it "登録できること" do
     @belongstogroup.save!
   end
+
   describe "Userオブジェクトからのアクセス" do
     before(:each) do
       @belongstogroup.save

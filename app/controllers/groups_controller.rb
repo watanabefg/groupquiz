@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @group = Group.all
+    @group = Group.all(:order => 'created_at desc', :limit => 20)
     @title = "グループの一覧"
   end
 
@@ -27,7 +27,15 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-    if @group.save
+    group_save = @group.save
+
+    belongs = {
+      "user_id" => params[:group]["user_id"],
+      "group_id" => @group.id
+    }
+    @belongstogroup = BelongsToGroup.new(belongs)
+
+    if group_save && @belongstogroup.save
       flash[:success] = "登録に成功しました"
       redirect_to @group
     else

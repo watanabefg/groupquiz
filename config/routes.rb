@@ -1,4 +1,8 @@
 Groupquiz::Application.routes.draw do
+  get "belongs_to_groups/new"
+
+  get "belongs_to_groups/show"
+
   get "users/update"
 
   get "users/edit"
