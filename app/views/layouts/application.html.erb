@@ -47,8 +47,20 @@
                   <li><a href="/groups/new">グループから抜ける</a></li>
                 </ul>
               </li>
-              <li><a href="/users/">設定</a></li>
+              
+	      <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		 設定
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- dropdown menu links -->
+                  <li><a href="/users/">アカウント情報を見る</a></li>
+                  <li><a href="/users/1/edit">アカウント情報を編集する</a></li>
+		</ul>
+              </li>
             </ul>
+
             <p class="navbar-text pull-right">
             <% if current_user %>  
               <%= current_user.name %>
