@@ -1,8 +1,4 @@
 Groupquiz::Application.routes.draw do
-  get "belongs_to_groups/new"
-
-  get "belongs_to_groups/show"
-
   get "users/update"
 
   get "users/edit"
@@ -15,9 +11,11 @@ Groupquiz::Application.routes.draw do
 
   get "users/index"
   get "users/callback"
+
   get "groups/ordergroup"
   get "groups/orderowner"
   get "groups/orderupdated"
+  get "groups/dropout"
 
   root :to => "users#index"
   match "/auth/facebook/callback" => "sessions#create"

@@ -1,6 +1,6 @@
 <h1><%= @group.title %></h1>
 <% @user.each do |u| %>
-<p>このグループは<%= u.name %>によって作成されました。</p>
+  <p>このグループは<%= u.name %>によって作成されました。</p>
 <% end %>
 <div class="row-fluid">
   <div class="span9">
@@ -12,8 +12,40 @@
       <h3>グループメンバー一覧</h3>
       <p>ここ間違ってるけど。</p>
       <% @user.each do |u| %>
-      <p><%= u.name %></p>
+        <p><%= u.name %></p>
       <% end %>
-  </div>
+      <h3>グループ管理</h3>
+      <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
+    </div>
   </div>
 </div>
+
+<div class="fade modal" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3><%= @group.title %>から抜けようとしています...</h3>
+  </div>
+  <div class="modal-body">
+    <p>本当に<%= @group.title %>から抜けても良いですか？</p>
+  </div>
+
+  <div class="modal-footer">
+  <%= form_for @group do |f| %>
+    <% if current_user %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% else %>
+      <%= f.hidden_field :user_id %>
+    <% end %>
+    <%= f.hidden_field :id %>
+
+    <a href="#" class="btn">いいえ</a>
+    <a href="#" class="btn btn-primary">はい</a>
+  <% end %>
+  </div>
+</div>
+<script type="text/javascript">
+  $('#myModal').modal({
+keyboard: false
+});
+$('#myModal').modal('toggle');
+</script>
