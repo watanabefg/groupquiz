@@ -12,12 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.number_field :name %>
+    <%= f.label :誕生日 %><br />
+    <%= f.number_field :birthday %>
+  </div>
+  <div class="field">
+    <%= f.label :性別 %><br />
+    <%= f.number_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.number_field :email_address %>
+  </div>
+  <div class="field">
+    <%= f.label :パスワード %><br />
+    <%= f.number_field :password %>
   </div>
   <div class="actions">
     <%= f.submit %>
