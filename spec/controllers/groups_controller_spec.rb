@@ -96,7 +96,77 @@ describe GroupsController do
     end #登録に成功するケースの検証 
   end
 
-  describe "POST 'dropout'" do
+  describe "GET 'edit'" do
+    before(:each) do
+      @group = Factory(:group)
+    end
+    it "アクセスできること" do
+      get :edit, :id => @group
+    end
+    it "タイトルの検証" do
+      get :edit, :id => @group
+      response.should have_selector("title", :content => "グループの編集|Groupquiz:クイズで楽しく情報共有")
+    end
+    it "タイトルフィールドが存在すること" do
+      get :edit,  :id => @group
+      response.should have_selector("input[name='group[title]'][type='text']")
+    end
   end
 
+  describe "PUT 'update'" do
+    before(:each) do
+      @group = Factory(:group)
+    end
+
+    describe "更新に失敗するケースの検証" do
+      before(:each) do
+        @attr = { :title => ""}
+      end
+      it "設定変更ページを再表示すること" do
+        put :update, :id => @group, :group => @attr
+        response.should render_template('edit')
+      end
+      it "設定変更ページのタイトルであること" do
+        put :update, :id => @group, :group => @attr
+        response.should have_selector("title", :content => "グループの編集|Groupquiz:クイズで楽しく情報共有")
+      end
+    end #更新に失敗するケースの検証
+
+    describe"更新に成功するケース" do
+      before(:each) do
+        @attr = { :title => "変更後のグループ" }
+      end
+      it "グループ情報が更新されていること" do
+        put :update, :id => @group, :group => @attr
+        @group.reload
+        @group.title.should == @attr[:title]
+      end
+      it "グループ個別ページへ遷移すること" do
+        put :update, :id => @group, :group => @attr
+        response.should redirect_to(group_path(@group))
+      end
+    end #更新に成功するケースの検証
+  end
+
+  describe "POST 'dropout'" do
+    before(:each) do
+      @group = Factory(:group)
+      @user = Factory(:user)
+      @belongs_to_group = Factory(:belongs_to_group)
+    end
+    describe "自分が管理者のケースの検証" do
+      describe "次の管理者がいないケースの検証" do
+        it "グループを削除すること" do
+          lambda do
+            post :dropout, :id => @group
+          end
+        end
+      end
+      describe "次の管理者を決めるケースの検証" do
+      end
+    end
+
+    describe "自分が管理者ではないケースの検証" do
+    end
+  end
 end

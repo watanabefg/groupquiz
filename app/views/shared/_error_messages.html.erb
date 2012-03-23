@@ -1,0 +1,11 @@
+<% if object.errors.any? %>
+<div id="error_explanation">
+<h2>登録できませんでした</h2>
+<p>以下の内容をご確認ください</p>
+<ul>
+<% object.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+</div>
+<% end %>

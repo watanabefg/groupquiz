@@ -50,4 +50,25 @@ class GroupsController < ApplicationController
     @title = @group.title
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    @title = "グループの編集|Groupquiz:クイズで楽しく情報共有"
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update_attributes(params[:group])
+      flash[:success] = "グループ情報を更新しました。"
+      redirect_to @group
+    else
+      @title = "グループの編集|Groupquiz:クイズで楽しく情報共有"
+      render 'edit'
+    end
+  end
+
+  def dropout
+    @group = Group.find(params[:id])
+    @user = @group.users
+  end
+
 end

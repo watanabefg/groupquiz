@@ -15,6 +15,7 @@
         <p><%= u.name %></p>
       <% end %>
       <h3>グループ管理</h3>
+      <p><a class="btn" href="<%= @group.id %>/edit">このグループを編集する</a></p>
       <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
     </div>
   </div>
@@ -26,7 +27,7 @@
     <h3><%= @group.title %>から抜けようとしています...</h3>
   </div>
   <div class="modal-body">
-    <p>本当に<%= @group.title %>から抜けても良いですか？</p>
+    <p>本当に<b>「<%= @group.title %>」</b>から抜けても良いですか？</p>
   </div>
 
   <div class="modal-footer">
@@ -39,7 +40,7 @@
     <%= f.hidden_field :id %>
 
     <a href="#" class="btn" data-dismiss="modal">いいえ</a>
-    <a href="#" class="btn btn-primary">はい</a>
+    <a href="#" class="btn btn-primary submit">はい</a>
   <% end %>
   </div>
 </div>
