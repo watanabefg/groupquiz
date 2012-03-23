@@ -96,4 +96,7 @@ describe GroupsController do
     end #登録に成功するケースの検証 
   end
 
+  describe "POST 'dropout'" do
+  end
+
 end
