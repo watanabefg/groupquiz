@@ -1,3 +1,4 @@
+# encoding:UTF-8
 class UsersController < ApplicationController
   def index
     @users = User.find(:all)
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @title = @user.name + "さんの情報を見る"
     respond_to do |format|
       format.html
     end
