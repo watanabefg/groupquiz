@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324044742) do
+ActiveRecord::Schema.define(:version => 20120324053038) do
 
   create_table "belongs_to_groups", :force => true do |t|
     t.integer  "user_id"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20120324044742) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.date     "birthday"
-    t.integer  "sex"
+    t.integer  "sex_id"
     t.string   "email_address"
     t.string   "password"
     t.date     "registration_date"
