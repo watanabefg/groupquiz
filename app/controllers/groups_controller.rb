@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
     }
     @belongstogroup = BelongsToGroup.new(belongs)
 
-    if group_save && @belongstogroup.save
+    if group_save && @belongstogroup.save then
       flash[:success] = "登録に成功しました"
       redirect_to @group
     else
@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update_attributes(params[:group])
+    if @group.update_attributes(params[:group]) then
       flash[:success] = "グループ情報を更新しました。"
       redirect_to @group
     else
@@ -73,7 +73,21 @@ class GroupsController < ApplicationController
     @belongstogroup = BelongsToGroup.
       where('user_id = ?', params[:group][:user_id]).
       where('group_id = ?', params[:id])
-    BelongsToGroup.delete(@belongstogroup)
+    BelongsToGroup.destroy(@belongstogroup)
+
+    if @group.user_id.to_s === params[:group][:user_id].to_s then
+      # グループのオーナーだったら
+      # 関連モデルに他のユーザーがいるか確認
+      # いなければ削除
+      # いれば次のオーナーを決める画面に遷移
+      bg = BelongsToGroup.where('group_id = ?', params[:id])
+
+      if bg === [] then
+        Group.delete(@group)
+      else
+        redirect_to @group
+      end
+    end
     redirect_to 'index'
   end
 
