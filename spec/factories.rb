@@ -15,7 +15,7 @@ Factory.define :belongs_to_group do |belongs_to_group|
   belongs_to_group.user_id "1"
   belongs_to_group.group_id "1"
 end
-Factory.define :belongs_to_group_next do |belongs_to_group|
+Factory.define :belongs_to_group_next, :class => BelongsToGroup do |belongs_to_group|
   belongs_to_group.user_id "2"
   belongs_to_group.group_id "1"
 end

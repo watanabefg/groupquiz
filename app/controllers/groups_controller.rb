@@ -85,7 +85,7 @@ class GroupsController < ApplicationController
       if bg === [] then
         Group.delete(@group)
       else
-        redirect_to @group
+        redirect_to edit_group_path(@group) and return
       end
     end
     redirect_to 'index'

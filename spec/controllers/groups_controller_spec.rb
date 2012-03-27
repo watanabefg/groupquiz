@@ -174,7 +174,7 @@ describe GroupsController do
         it "グループの次の管理者を決める画面に遷移" do
           Factory(:belongs_to_group_next)
           put :dropout, :id => @group.id, :group => @attr
-          response.should redirect_to(group_path(assigns(:group))) 
+          response.should redirect_to(edit_group_path(assigns(:group))) 
         end
       end
     end
