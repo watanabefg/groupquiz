@@ -88,7 +88,7 @@ class GroupsController < ApplicationController
         redirect_to edit_group_path(@group) and return
       end
     end
-    redirect_to 'index'
+    redirect_to :action => 'index'
   end
 
 end
