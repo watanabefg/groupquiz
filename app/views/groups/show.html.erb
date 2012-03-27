@@ -31,16 +31,15 @@
   </div>
 
   <div class="modal-footer">
-  <%= form_for @group do |f| %>
+    <%= form_for(@group, :url => dropout_group_path) do |f| %>
     <% if current_user %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
     <% else %>
       <%= f.hidden_field :user_id %>
     <% end %>
     <%= f.hidden_field :id %>
-
     <a href="#" class="btn" data-dismiss="modal">いいえ</a>
-    <a href="#" class="btn btn-primary submit">はい</a>
+    <button class="btn btn-primary" type="submit">はい</button>
   <% end %>
   </div>
 </div>

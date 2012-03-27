@@ -153,13 +153,20 @@ describe GroupsController do
       @group = Factory(:group)
       @user = Factory(:user)
       @belongs_to_group = Factory(:belongs_to_group)
+      @attr = { :user_id => @user.id, :group_id => @group.id }
     end
     describe "自分が管理者のケースの検証" do
+      it "所属からはずすこと" do
+        lambda do
+          put :dropout, :id => @group.id, :group => @attr
+        end.should change(BelongsToGroup, :count).by(-1) 
+      end
+
       describe "次の管理者がいないケースの検証" do
         it "グループを削除すること" do
           lambda do
-            post :dropout, :id => @group
-          end
+            put :dropout, :id => @group.id, :group => @attr
+          end.should change(Group, :count).by(-1) 
         end
       end
       describe "次の管理者を決めるケースの検証" do

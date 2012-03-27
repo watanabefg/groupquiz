@@ -69,6 +69,12 @@ class GroupsController < ApplicationController
   def dropout
     @group = Group.find(params[:id])
     @user = @group.users
+    # 関連モデルから削除する
+    @belongstogroup = BelongsToGroup.
+      where('user_id = ?', params[:group][:user_id]).
+      where('group_id = ?', params[:id])
+    BelongsToGroup.delete(@belongstogroup)
+    redirect_to 'index'
   end
 
 end

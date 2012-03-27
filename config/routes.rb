@@ -15,7 +15,6 @@ Groupquiz::Application.routes.draw do
   get "groups/ordergroup"
   get "groups/orderowner"
   get "groups/orderupdated"
-  get "groups/dropout"
 
   root :to => "users#index"
   match "/auth/facebook/callback" => "sessions#create"
@@ -24,6 +23,7 @@ Groupquiz::Application.routes.draw do
   match "/plans" => "pages#plans"
   resources :users
   resources :groups
+  match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
