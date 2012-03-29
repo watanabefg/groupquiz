@@ -6,8 +6,19 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @group = Group.all(:order => 'created_at desc', :limit => 20)
-    @title = "グループの一覧"
+    if params[:cond] === 'owner' then
+      @group = Group.where('user_id = ?', params[:user_id])
+      @title = "参加中のグループの一覧"
+    elsif params[:cond] === 'part' then
+      @belongstogroup = BelongsToGroup.where('user_id = ?', params[:user_id])
+      @belongstogroup.each do |b|
+        @group = Group.where('id = ?', b.group_id)
+        @title = "参加中のグループの一覧"
+      end
+    else
+      @group = Group.all(:order => 'created_at desc', :limit => 20)
+      @title = "グループの一覧"
+    end
   end
 
   def ordergroup
