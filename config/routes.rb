@@ -1,6 +1,14 @@
 Groupquiz::Application.routes.draw do
-  get "users/update"
+  get "quiz/index"
+  get "quiz/show"
+  get "quiz/new"
+  get "quiz/edit"
+  get "quiz/update"
+  get "quiz/destroy"
 
+  get "users/index"
+  get "users/callback"
+  get "users/update"
   get "users/edit"
 
   get "pages/home"
@@ -8,9 +16,6 @@ Groupquiz::Application.routes.draw do
   get "pages/plans"
 
   get "sessions/create"
-
-  get "users/index"
-  get "users/callback"
 
   get "groups/ordergroup"
   get "groups/orderowner"
@@ -21,6 +26,7 @@ Groupquiz::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout  
   match "/features" => "pages#features"
   match "/plans" => "pages#plans"
+  resources :quizzes
   resources :users
   resources :groups
   match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
