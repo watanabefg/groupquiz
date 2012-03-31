@@ -28,7 +28,7 @@ class QuizController < ApplicationController
   end
 
   def edit
-    @quiz = Quiz.new(params[:blog])
+    @quiz = Quiz.new(params[:quiz])
 
     respond_to do |format|
       if @quiz.save
@@ -45,7 +45,7 @@ class QuizController < ApplicationController
     @quiz = Quiz.find(params[:id])
 
     respond_to do |format|
-      if @quiz.update_attributes(params[:blog])
+      if @quiz.update_attributes(params[:quiz])
         format.html { redirect_to @quiz, notice: 'Blog was successfully updated.' }
         format.json { head :no_content }
       else
@@ -60,7 +60,7 @@ class QuizController < ApplicationController
     @quiz.destroy
 
     respond_to do |format|
-      format.html { redirect_to blogs_url }
+      format.html { redirect_to quizzes_url }
       format.json { head :no_content }
     end
   end
