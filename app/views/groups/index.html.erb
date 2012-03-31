@@ -2,9 +2,9 @@
   <div class="span3">
     <div class="well sidebar-nav">
       <ul>
-        <li>全て</li>
-        <li>自分がオーナー</li>
-        <li>参加中</li>
+        <li><%= link_to '全て', '/groups/' %></li>
+        <li><%= link_to '自分がオーナー', '?cond=owner&user_id=1' %></li>
+        <li><%= link_to '参加中', '?cond=part&user_id=1' %></li>
       </ul>
     </div>
   </div>
