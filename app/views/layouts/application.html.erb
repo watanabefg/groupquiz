@@ -54,8 +54,10 @@
                 </a>
                 <ul class="dropdown-menu">
                   <!-- dropdown menu links -->
-                  <li><a href="/users/">アカウント情報を見る</a></li>
-                  <li><a href="/users/1/edit">アカウント情報を編集する</a></li>
+                  <% if current_user %>  
+                  <li><a href="/users/<%= current_user.id %>">アカウント情報を見る</a></li>
+                  <li><a href="/users/<%= current_user.id %>/edit">アカウント情報を編集する</a></li>
+                  <% end %>
 		</ul>
               </li>
             </ul>
