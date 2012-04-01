@@ -54,9 +54,14 @@ describe UsersController do
     before(:each) do
       @user = Factory(:user)
     end
-    it "returns http success" do
+    it "アップデート成功" do
       put 'update', :id => @user
       response.should redirect_to(user_path(assigns(:user)))
+    end
+    it "アップデート失敗" do
+      @attr = {:name => '', :password => '', :sex_id => '', :email_address => ''}
+      put 'update', :id => @user, :user => @attr
+      response.should redirect_to(edit_user_path(assigns(:user)))
     end
   end
 

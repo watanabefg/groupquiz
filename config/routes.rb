@@ -8,7 +8,6 @@ Groupquiz::Application.routes.draw do
 
   get "users/index"
   get "users/callback"
-  get "users/update"
   get "users/edit"
 
   get "pages/home"
