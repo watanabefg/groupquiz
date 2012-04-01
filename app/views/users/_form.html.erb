@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this blog from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -17,15 +17,18 @@
   </div>
   <div class="field">
     <%= f.label :誕生日 %>
-    <%= f.number_field :birthday %>
+    <%= f.date_select :birthday %>
   </div>
   <div class="field">
+    <% sex = {'1' => '男', '2' => '女'} %>
     <%= f.label :性別 %>
-    <%= f.number_field :sex_id %>
+    <% sex.each_pair {|key, value| %>
+      <%= f.radio_button :sex_id, key %><%= h value %>
+    <% } %>
   </div>
   <div class="field">
     <%= f.label :メールアドレス %>
-    <%= f.number_field :email_address %>
+    <%= f.text_field :email_address %>
   </div>
   <div class="field">
     <%= f.label :パスワード %>
