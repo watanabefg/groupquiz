@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @title = "ユーザー情報の編集|Groupquiz:クイズで楽しく情報共有"
     @user = User.find(params[:id])
     respond_to do |format|
       format.html

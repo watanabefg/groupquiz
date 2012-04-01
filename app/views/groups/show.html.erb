@@ -10,12 +10,13 @@
   <div class="span3">
     <div class="well sidebar-nav">
       <h3>グループメンバー一覧</h3>
-      <p>ここ間違ってるけど。</p>
-      <% @user.each do |u| %>
-        <p><%= u.name %></p>
-      <% end %>
+      <p>ここできてない</p>
       <h3>グループ管理</h3>
-      <p><a class="btn" href="<%= @group.id %>/edit">このグループを編集する</a></p>
+      <% @user.each do |u| %>
+        <% if @group.user_id == u.id %>
+        <p><a class="btn" href="<%= @group.id %>/edit">このグループを編集する</a></p>
+        <% end %>
+      <% end %>
       <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
     </div>
   </div>
