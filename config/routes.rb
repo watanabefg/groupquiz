@@ -1,10 +1,10 @@
 Groupquiz::Application.routes.draw do
-  get "quiz/index"
-  get "quiz/show"
-  get "quiz/new"
-  get "quiz/edit"
-  get "quiz/update"
-  get "quiz/destroy"
+  get "quizzes/index"
+  get "quizzes/show"
+  get "quizzes/new"
+  get "quizzes/edit"
+  get "quizzes/update"
+  get "quizzes/destroy"
 
   get "users/index"
   get "users/callback"
