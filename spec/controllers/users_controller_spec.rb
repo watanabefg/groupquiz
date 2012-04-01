@@ -48,12 +48,25 @@ describe UsersController do
       get 'edit', :id => @user
       response.should have_selector("input[name='user[password]'][type='password']")
     end
-
   end
 
-  describe "GET 'update'" do
+  describe "PUT 'update'" do
+    before(:each) do
+      @user = Factory(:user)
+    end
     it "returns http success" do
-      get 'update'
+      put 'update', :id => @user
+      response.should redirect_to(user_path(assigns(:user)))
+    end
+  end
+
+  describe "GET 'show'" do
+    before(:each) do
+      @user = Factory(:user)
+      @sex = Factory(:sex)
+    end
+    it "returns http success" do
+      get 'show', :id => @user
       response.should be_success
     end
   end
