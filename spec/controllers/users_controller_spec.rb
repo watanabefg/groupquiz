@@ -61,7 +61,7 @@ describe UsersController do
     it "アップデート失敗" do
       @attr = {:name => '', :password => '', :sex_id => '', :email_address => ''}
       put 'update', :id => @user, :user => @attr
-      response.should redirect_to(edit_user_path(assigns(:user)))
+      response.should render_template('edit')
     end
   end
 
