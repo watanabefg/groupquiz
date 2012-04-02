@@ -1,7 +1,9 @@
 # encoding:UTF-8
 class UsersController < ApplicationController
+  skip_before_filter :authenticate, :only => [:index]
   def index
     @users = User.find(:all)
+    @title = "ユーザーログイン"
   end
 
   def callback

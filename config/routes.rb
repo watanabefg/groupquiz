@@ -1,11 +1,4 @@
 Groupquiz::Application.routes.draw do
-  get "quizzes/index"
-  get "quizzes/show"
-  get "quizzes/new"
-  get "quizzes/edit"
-  get "quizzes/update"
-  get "quizzes/destroy"
-
   get "users/index"
   get "users/callback"
   get "users/edit"
@@ -21,6 +14,7 @@ Groupquiz::Application.routes.draw do
   get "groups/orderupdated"
 
   root :to => "users#index"
+  match "/signin" => "sessions#new", :as => :signin
   match "/auth/facebook/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout  
   match "/features" => "pages#features"

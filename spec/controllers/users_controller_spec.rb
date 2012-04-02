@@ -70,9 +70,18 @@ describe UsersController do
       @user = Factory(:user)
       @sex = Factory(:sex)
     end
-    it "returns http success" do
-      get 'show', :id => @user
-      response.should be_success
+    describe "サインインしていなければアクセス禁止" do
+      it "サインインページにリダイレクトされること" do
+        get 'show', :id => @user
+        response.should redirect_to(signin_path)
+      end
+    end
+    describe "サインインしている場合" do
+      controller.sign_in(@user)
+      it "returns http success" do
+        get 'show', :id => @user
+        response.should be_success
+      end
     end
   end
 
@@ -85,16 +94,20 @@ describe UsersController do
       response.should redirect_to 'index'
     end
     describe "削除成功" do
-    it "ユーザーが1件減っていること" do
-      lambda do
-        delete 'destroy', :id => @user
-      end.should change(User, :count).by(-1) 
-    end
+      it "ユーザーが1件減っていること" do
+        lambda do
+          delete 'destroy', :id => @user
+        end.should change(User, :count).by(-1) 
+      end
     end
     describe "削除失敗" do
       it "ユーザーが削除されていないこと" do
+        wrong_user = Factory(:user, :name => "Sabrou")
+        controller.sign_in(wrong_user)
+
+        delete :destroy,  :id => @user
+        response.should redirect_to(root_path)
       end
     end
   end
-
 end
