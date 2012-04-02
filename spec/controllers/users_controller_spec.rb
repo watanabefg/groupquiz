@@ -76,4 +76,25 @@ describe UsersController do
     end
   end
 
+  describe "GET 'destroy'" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+    it "returns http success" do
+      delete 'destroy', :id => @user
+      response.should redirect_to 'index'
+    end
+    describe "削除成功" do
+    it "ユーザーが1件減っていること" do
+      lambda do
+        delete 'destroy', :id => @user
+      end.should change(User, :count).by(-1) 
+    end
+    end
+    describe "削除失敗" do
+      it "ユーザーが削除されていないこと" do
+      end
+    end
+  end
+
 end

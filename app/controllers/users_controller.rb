@@ -35,4 +35,9 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to 'index', notice: 'User was deleted.'
+  end
 end
