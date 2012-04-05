@@ -2,7 +2,6 @@
   <% if @quiz.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
-
       <ul>
       <% @quiz.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -17,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label :quiz_contents,"クイズ内容" %><br />
-    <%= f.text_field :quiz_contents %>
+    <%= f.text_area :quiz_contents, :size => "10x5" %>
   </div>
   <div class="field">
     <%= f.label :quiz_answer,"クイズ解答" %><br />
