@@ -10,6 +10,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    @categories = Category.find(@quiz.category_id)
+    @category_name = @categories.name
 
     respond_to do |format|
       format.html # show.html.erb
