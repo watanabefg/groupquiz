@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>名前:</b>
   <%= @user.name %>
@@ -15,4 +13,24 @@
 <p>
   <b>メールアドレス:</b>
   <%= @user.email_address %>
+</p>
+<p>
+  <b>登録日:</b>
+  <%= @user.registration_date %>
+</p>
+<p>
+  <b>有効期限:</b>
+  <%= @user.term_of_validity %>
+</p>
+<p>
+  <b>口座情報登録フラグ:</b>
+  <%= @user.Account_information_flag %>
+</p>
+<p>
+  <b>保有メダル:</b>
+  <%= @user.possession_medals %>
+</p>
+<p>
+  <b>最終ログイン日時:</b>
+  <%= @user.last_login_time %>
 </p>

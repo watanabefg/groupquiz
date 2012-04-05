@@ -1,14 +1,6 @@
 Groupquiz::Application.routes.draw do
-  get "quizzes/index"
-  get "quizzes/show"
-  get "quizzes/new"
-  get "quizzes/edit"
-  get "quizzes/update"
-  get "quizzes/destroy"
-
   get "users/index"
   get "users/callback"
-  get "users/update"
   get "users/edit"
 
   get "pages/home"
@@ -22,6 +14,7 @@ Groupquiz::Application.routes.draw do
   get "groups/orderupdated"
 
   root :to => "users#index"
+  match "/signin" => "sessions#new", :as => :signin
   match "/auth/facebook/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout  
   match "/features" => "pages#features"
@@ -29,6 +22,7 @@ Groupquiz::Application.routes.draw do
   resources :quizzes
   resources :users
   resources :groups
+  resources :categories
   match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
 
   # The priority is based upon order of creation:

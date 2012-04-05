@@ -1,7 +1,9 @@
 # encoding:UTF-8
 class UsersController < ApplicationController
+  skip_before_filter :authenticate, :only => [:index]
   def index
     @users = User.find(:all)
+    @title = "ユーザーログイン"
   end
 
   def callback
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @title = "ユーザー情報の編集|Groupquiz:クイズで楽しく情報共有"
     @user = User.find(params[:id])
     respond_to do |format|
       format.html
@@ -33,5 +36,10 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to 'index', notice: 'User was deleted.'
   end
 end
