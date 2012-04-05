@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405165129) do
+ActiveRecord::Schema.define(:version => 20120405173729) do
 
   create_table "belongs_to_groups", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20120405165129) do
     t.integer  "category_id"
     t.text     "correct_answer_message"
     t.text     "not_correct_answer_message"
+    t.integer  "user_id"
   end
 
   create_table "sexes", :force => true do |t|

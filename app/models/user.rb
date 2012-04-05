@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :length => {:maximum => 50}
   has_many :belongs_to_groups, :foreign_key => "user_id", :dependent => :destroy
   has_many :groups, :through => :belongs_to_users
+  has_many :quiz, :foreign_key => "user_id", :dependent => :destroy
   belongs_to :sex
 
   def self.create_with_omniauth(auth)
