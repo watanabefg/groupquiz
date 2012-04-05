@@ -19,7 +19,6 @@ class QuizzesController < ApplicationController
 
   def new
     @quiz = Quiz.new
-    @categories = Category.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb

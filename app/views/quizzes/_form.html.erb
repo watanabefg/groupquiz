@@ -24,12 +24,8 @@
     <%= f.text_field :quiz_answer %>
   </div>
   <div class="field">
-    <%= f.label :クイズ解答（選択形式） %><br />
-    <%= f.text_field :choice_quiz_answer %>
-  </div>
-  <div class="field">
-    <%= f.label :クイズカテゴリ %><br />
-    <%= f.text_field :quiz_category %>
+    <%= f.label :クイズカテゴリ（作成中） %><br />
+    <%= f.select :quiz_category, @categories.collect{|p| [p.name]} %>
   </div>
   <div class="field">
     <%= f.label :クイズ正解時のメッセージ %><br />
