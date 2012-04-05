@@ -7,4 +7,5 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Sex.create([{ name: '男'},  { name: '女'}])
+Category.create([{ name: 'テスト1'}, {name: 'テスト2'}])
 

@@ -77,7 +77,7 @@ describe UsersController do
       end
     end
     describe "サインインしている場合" do
-      controller.sign_in(@user)
+      controller.user_sign_in(@user)
       it "returns http success" do
         get 'show', :id => @user
         response.should be_success
@@ -103,7 +103,7 @@ describe UsersController do
     describe "削除失敗" do
       it "ユーザーが削除されていないこと" do
         wrong_user = Factory(:user, :name => "Sabrou")
-        controller.sign_in(wrong_user)
+        controller.user_sign_in(wrong_user)
 
         delete :destroy,  :id => @user
         response.should redirect_to(root_path)
