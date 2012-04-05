@@ -23,22 +23,6 @@
     <%= f.label :クイズ解答 %><br />
     <%= f.text_field :quiz_answer %>
   </div>
-  <div class="field">
-    <%= f.label :クイズ解答（選択形式） %><br />
-    <%= f.text_field :choice_quiz_answer %>
-  </div>
-  <div class="field">
-    <%= f.label :クイズカテゴリ %><br />
-    <%= f.text_field :quiz_category %>
-  </div>
-  <div class="field">
-    <%= f.label :クイズ正解時のメッセージ %><br />
-    <%= f.text_field :correct_answer_message %>
-  </div>
-  <div class="field">
-    <%= f.label :クイズ不正解時のメッセージ %><br />
-    <%= f.text_field :not_correct_answer_message %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
