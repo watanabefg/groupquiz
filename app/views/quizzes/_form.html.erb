@@ -2,7 +2,6 @@
   <% if @quiz.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
-
       <ul>
       <% @quiz.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,8 +9,14 @@
       </ul>
     </div>
   <% end %>
+<% if current_user %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<% else %>
+  <%= f.hidden_field :user_id %>
+<% end %>
 
   <div class="field">
+<<<<<<< HEAD
     <%= f.label :■クイズタイトル %><br />
     <%= f.text_field :quiz_title %>
   </div>
@@ -55,6 +60,24 @@
   <div class="field">
     <%= f.label :■クイズ不正解時のメッセージ %><br />
     <%= f.text_field :not_correct_answer_message %>
+=======
+    <%= f.label :quiz_title,"クイズタイトル" %> <%= f.text_field :quiz_title %>
+  </div>
+  <div class="field">
+    <%= f.label :quiz_contents,"クイズ内容" %> <%= f.text_area :quiz_contents, :size => "10x5" %>
+  </div>
+  <div class="field">
+    <%= f.label :quiz_answer,"クイズ解答" %> <%= f.text_field :quiz_answer %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id,"カテゴリー" %> <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %><a target="_blank" href="/categories/new">新しいカテゴリーを作る</a>
+  </div>
+  <div class="field">
+    <%= f.label :correct_answer_message,"クイズ正解時のメッセージ" %> <%= f.text_field :correct_answer_message %>
+  </div>
+  <div class="field">
+    <%= f.label :not_correct_answer_message,"クイズ不正解時のメッセージ" %> <%= f.text_field :not_correct_answer_message %>
+>>>>>>> 63410405aa349f281ee1d31344021159b7dc0a12
   </div>
   <div class="actions">
     <%= f.submit %>

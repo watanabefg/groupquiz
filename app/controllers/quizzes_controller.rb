@@ -1,3 +1,4 @@
+#encoding:UTF-8
 class QuizzesController < ApplicationController
   def index
     @quizzes = Quiz.all
@@ -10,6 +11,8 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    @categories = Category.find(@quiz.category_id)
+    @category_name = @categories.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,6 +39,10 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz.save
+        # TODO:登録したユーザーに5ポイントあげる
+        @user = User.find(@quiz.user_id)
+        #@user.pointup(5)
+
         format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
         format.json { render json: @quiz, status: :created, location: @quiz }
       else

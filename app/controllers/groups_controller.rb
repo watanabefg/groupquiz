@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
       @group = Group.where('user_id = ?', params[:user_id])
       @title = "参加中のグループの一覧"
     elsif params[:cond] === 'part' then
+      @group = Group.where('id = 0')
       @belongstogroup = BelongsToGroup.where('user_id = ?', params[:user_id])
       @belongstogroup.each do |b|
         @group = Group.where('id = ?', b.group_id)
