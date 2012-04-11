@@ -16,28 +16,22 @@
 <% end %>
 
   <div class="field">
-    <%= f.label :quiz_title,"クイズタイトル" %><br />
-    <%= f.text_field :quiz_title %>
+    <%= f.label :quiz_title,"クイズタイトル" %> <%= f.text_field :quiz_title %>
   </div>
   <div class="field">
-    <%= f.label :quiz_contents,"クイズ内容" %><br />
-    <%= f.text_area :quiz_contents, :size => "10x5" %>
+    <%= f.label :quiz_contents,"クイズ内容" %> <%= f.text_area :quiz_contents, :size => "10x5" %>
   </div>
   <div class="field">
-    <%= f.label :quiz_answer,"クイズ解答" %><br />
-    <%= f.text_field :quiz_answer %>
+    <%= f.label :quiz_answer,"クイズ解答" %> <%= f.text_field :quiz_answer %>
   </div>
   <div class="field">
-    <%= f.label :category_id,"クイズカテゴリ（作成中）" %><br />
-    <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %>
+    <%= f.label :category_id,"カテゴリー" %> <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %><a target="_blank" href="/categories/new">新しいカテゴリーを作る</a>
   </div>
   <div class="field">
-    <%= f.label :correct_answer_message,"クイズ正解時のメッセージ" %><br />
-    <%= f.text_field :correct_answer_message %>
+    <%= f.label :correct_answer_message,"クイズ正解時のメッセージ" %> <%= f.text_field :correct_answer_message %>
   </div>
   <div class="field">
-    <%= f.label :not_correct_answer_message,"クイズ不正解時のメッセージ" %><br />
-    <%= f.text_field :not_correct_answer_message %>
+    <%= f.label :not_correct_answer_message,"クイズ不正解時のメッセージ" %> <%= f.text_field :not_correct_answer_message %>
   </div>
   <div class="actions">
     <%= f.submit %>
