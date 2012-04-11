@@ -12,27 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :クイズタイトル %><br />
+    <%= f.label :■クイズタイトル %><br />
     <%= f.text_field :quiz_title %>
   </div>
   <div class="field">
-    <%= f.label :クイズ内容 %><br />
+    <%= f.label :■クイズ内容 %><br />
     <%= f.text_field :quiz_contents %>
   </div>
   <div class="field">
-    <%= f.label :クイズ解答 %><br />
-    <%= f.text_field :quiz_answer %>
+    <%= f.label :■クイズ解答（選択肢１） %>
+    <%= f.text_field :quiz_answer1 %>
   </div>
   <div class="field">
-    <%= f.label :クイズカテゴリ（作成中） %><br />
-    <%= f.select :quiz_category, @categories.collect{|p| [p.name]} %>
+    <%= f.label :■クイズ解答（選択肢２） %><br />
+    <%= f.text_field :quiz_answer2 %>
   </div>
   <div class="field">
-    <%= f.label :クイズ正解時のメッセージ %><br />
+    <%= f.label :■クイズ解答（選択肢３） %>
+    <%= f.text_field :quiz_answer3 %>
+  </div>
+  <div class="field">
+    <%= f.label :■クイズ解答（選択肢４） %><br />
+    <%= f.text_field :quiz_answer4 %>
+  </div>
+  <p>
+  <div class="field">
+    <%= f.label :■クイズの解答を選択 %><br />
+    <label><%= f.radio_button "quiz_answer_radio", '1' %>クイズ解答（選択肢１）</label>
+    <label><%= f.radio_button "quiz_answer_radio", '2' %>クイズ解答（選択肢２）</label>
+    <label><%= f.radio_button "quiz_answer_radio", '3' %>クイズ解答（選択肢３）</label>
+    <label><%= f.radio_button "quiz_answer_radio", '4' %>クイズ解答（選択肢４）</label>
+  </div>
+  </p>
+  <div class="field">
+    <%= f.label :■クイズカテゴリ %><br />
+    <%= f.select :quiz_category, @categories.collect{|p| [p.name, p.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :■クイズ正解時のメッセージ %><br />
     <%= f.text_field :correct_answer_message %>
   </div>
   <div class="field">
-    <%= f.label :クイズ不正解時のメッセージ %><br />
+    <%= f.label :■クイズ不正解時のメッセージ %><br />
     <%= f.text_field :not_correct_answer_message %>
   </div>
   <div class="actions">
