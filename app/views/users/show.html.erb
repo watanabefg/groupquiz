@@ -8,7 +8,9 @@
 </p>
 <p>
   <b>性別:</b>
+  <% if !@user.sex_id.nil? %>
   <%= @user.sex.name %>
+  <% end %>
 </p>
 <p>
   <b>メールアドレス:</b>
