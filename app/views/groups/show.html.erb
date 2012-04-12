@@ -6,6 +6,11 @@
   <div class="span9">
     <h2>このグループにあるクイズ</h2>
     <p>この下にはグループにある質問一覧が出てくる。</p>
+    <ul>
+    <% @quizzes.each do |quiz| %>
+      <li><%= link_to quiz.quiz_title, '/quizzes/'+quiz.id.to_s %></li>
+    <% end %>
+  </ul>
   </div>
   <div class="span3">
     <div class="well sidebar-nav">
@@ -18,7 +23,7 @@
         <% end %>
       <% end %>
       <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
-      <p><a href="/quizzes/new">クイズを作る</a></p>
+      <p><a href="/quizzes/new?gid=<%= @group.id %>">クイズを作る</a></p>
     </div>
   </div>
 </div>
