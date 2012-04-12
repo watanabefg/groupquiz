@@ -14,72 +14,51 @@
 <% else %>
   <%= f.hidden_field :user_id %>
 <% end %>
+<%= f.hidden_field :group_id, :value => @group_id %>
 
   <div class="field">
-<<<<<<< HEAD
-    <%= f.label :■クイズタイトル %><br />
+    <%= f.label :quiz_title,"クイズタイトル" %>
     <%= f.text_field :quiz_title %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ内容 %><br />
-    <%= f.text_field :quiz_contents %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ解答（選択肢１） %>
-    <%= f.text_field :quiz_answer1 %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ解答（選択肢２） %><br />
-    <%= f.text_field :quiz_answer2 %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ解答（選択肢３） %>
-    <%= f.text_field :quiz_answer3 %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ解答（選択肢４） %><br />
-    <%= f.text_field :quiz_answer4 %>
-  </div>
-  <p>
-  <div class="field">
-    <%= f.label :■クイズの解答を選択 %><br />
-    <label><%= f.radio_button "quiz_answer_radio", '1' %>クイズ解答（選択肢１）</label>
-    <label><%= f.radio_button "quiz_answer_radio", '2' %>クイズ解答（選択肢２）</label>
-    <label><%= f.radio_button "quiz_answer_radio", '3' %>クイズ解答（選択肢３）</label>
-    <label><%= f.radio_button "quiz_answer_radio", '4' %>クイズ解答（選択肢４）</label>
-  </div>
-  </p>
-  <div class="field">
-    <%= f.label :■クイズカテゴリ %><br />
-    <%= f.select :quiz_category, @categories.collect{|p| [p.name, p.id]} %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ正解時のメッセージ %><br />
-    <%= f.text_field :correct_answer_message %>
-  </div>
-  <div class="field">
-    <%= f.label :■クイズ不正解時のメッセージ %><br />
-    <%= f.text_field :not_correct_answer_message %>
-=======
-    <%= f.label :quiz_title,"クイズタイトル" %> <%= f.text_field :quiz_title %>
   </div>
   <div class="field">
     <%= f.label :quiz_contents,"クイズ内容" %> <%= f.text_area :quiz_contents, :size => "10x5" %>
   </div>
+
   <div class="field">
-    <%= f.label :quiz_answer,"クイズ解答" %> <%= f.text_field :quiz_answer %>
+    <%= f.label :quiz_answer1,"クイズ解答（選択肢１）" %>
+    <%= f.text_field :quiz_answer1 %>
   </div>
   <div class="field">
-    <%= f.label :category_id,"カテゴリー" %> <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %><a target="_blank" href="/categories/new">新しいカテゴリーを作る</a>
+    <%= f.label :quiz_answer2,"クイズ解答（選択肢２）" %>
+    <%= f.text_field :quiz_answer2 %>
+  </div>
+  <div class="field">
+    <%= f.label :quiz_answer3,"クイズ解答（選択肢３）" %>
+    <%= f.text_field :quiz_answer3 %>
+  </div>
+  <div class="field">
+    <%= f.label :quiz_answer4,"クイズ解答（選択肢４）" %>
+    <%= f.text_field :quiz_answer4 %>
+  </div>
+  <div class="field">
+  <p>
+    クイズの正解を選択してください
+  </p>
+    <%= f.radio_button "quiz_answer_radio", '1' %>クイズ解答（選択肢１）
+    <%= f.radio_button "quiz_answer_radio", '2' %>クイズ解答（選択肢２）
+    <%= f.radio_button "quiz_answer_radio", '3' %>クイズ解答（選択肢３）
+    <%= f.radio_button "quiz_answer_radio", '4' %>クイズ解答（選択肢４）
   </div>
   <div class="field">
     <%= f.label :correct_answer_message,"クイズ正解時のメッセージ" %> <%= f.text_field :correct_answer_message %>
   </div>
   <div class="field">
     <%= f.label :not_correct_answer_message,"クイズ不正解時のメッセージ" %> <%= f.text_field :not_correct_answer_message %>
->>>>>>> 63410405aa349f281ee1d31344021159b7dc0a12
   </div>
-  <div class="actions">
+    <div class="field">
+    <%= f.label :category_id,"カテゴリー" %> <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %><a target="_blank" href="/categories/new">新しいカテゴリーを作る</a>
+  </div>
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

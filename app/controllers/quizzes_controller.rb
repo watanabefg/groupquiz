@@ -21,6 +21,9 @@ class QuizzesController < ApplicationController
   end
 
   def new
+    if params[:gid] then
+      @group_id = params[:gid]
+    end
     @quiz = Quiz.new
     @categories = Category.find(:all)
 

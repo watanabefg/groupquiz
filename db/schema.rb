@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120411164142) do
-=======
-ActiveRecord::Schema.define(:version => 20120405173729) do
->>>>>>> 63410405aa349f281ee1d31344021159b7dc0a12
+ActiveRecord::Schema.define(:version => 20120412014904) do
 
   create_table "belongs_to_groups", :force => true do |t|
     t.integer  "user_id"
@@ -48,15 +44,13 @@ ActiveRecord::Schema.define(:version => 20120405173729) do
     t.integer  "category_id"
     t.text     "correct_answer_message"
     t.text     "not_correct_answer_message"
-<<<<<<< HEAD
+    t.integer  "user_id"
     t.text     "quiz_answer1"
     t.text     "quiz_answer2"
     t.text     "quiz_answer3"
     t.text     "quiz_answer4"
     t.integer  "quiz_answer_radio"
-=======
-    t.integer  "user_id"
->>>>>>> 63410405aa349f281ee1d31344021159b7dc0a12
+    t.integer  "group_id"
   end
 
   create_table "sexes", :force => true do |t|
