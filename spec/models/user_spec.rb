@@ -21,7 +21,6 @@ describe User do
       user = User.new(@attr)
       user.should be_valid
     end
-
   end
 
   describe "belongs_to_groups" do
@@ -43,6 +42,20 @@ describe User do
     end
     it "sexメソッドが機能すること" do
       @user.should respond_to(:sex)
+    end
+  end
+
+  describe "pointupメソッドの検証" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+    it "pointupメソッドが機能すること" do
+      @user.should respond_to(:pointup)
+    end
+    it "5枚メダルが増えること" do
+      lambda {
+        @user.pointup(5)
+      }.should change(@user, :possession_medals).by(5)
     end
   end
 end

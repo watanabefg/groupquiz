@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   belongs_to :sex
 
   def self.create_with_omniauth(auth)
-    print auth
     create!do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
@@ -24,5 +23,11 @@ class User < ActiveRecord::Base
       user.number_of_login = 1
     end 
   end 
+
+  def pointup(num)
+    if !self.possession_medals.nil?
+      self.possession_medals = self.possession_medals + num
+    end
+  end
 
 end

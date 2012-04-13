@@ -6,6 +6,7 @@ Factory.define :user do |user|
   user.sex_id "1"
   user.email_address "test@test.com"
   user.password "testtest"
+  user.possession_medals 0
 end
 Factory.define :group do |group|
   group.user_id  "1"
