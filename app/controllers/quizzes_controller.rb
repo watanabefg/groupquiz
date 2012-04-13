@@ -44,7 +44,7 @@ class QuizzesController < ApplicationController
       if @quiz.save
         # TODO:登録したユーザーに5ポイントあげる
         @user = User.find(@quiz.user_id)
-        #@user.pointup(5)
+        @user.pointup(5)
 
         format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
         format.json { render json: @quiz, status: :created, location: @quiz }
