@@ -4,3 +4,9 @@
 <li><a href="/quizzes/edit">クイズを編集する</a></li>
 <li><a href="/quizzes/destroy">クイズを削除する</a></li>
 
+<%= @quizzes.each do |quiz| %>
+  <tr>
+    <td><%= quiz.quiz_title %></td>
+    <td><%= link_to 'Show', quiz %></td>
+  </tr>
+<% end %>

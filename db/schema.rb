@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(:version => 20120412014904) do
     t.integer  "category_id"
     t.text     "correct_answer_message"
     t.text     "not_correct_answer_message"
-    t.integer  "user_id"
     t.text     "quiz_answer1"
     t.text     "quiz_answer2"
     t.text     "quiz_answer3"
     t.text     "quiz_answer4"
     t.integer  "quiz_answer_radio"
+    t.integer  "user_id"
     t.integer  "group_id"
   end
 
