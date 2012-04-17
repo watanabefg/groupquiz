@@ -1,12 +1,3 @@
 <h1>Quizzes#index</h1>
-<li><a href="/quizzes/show">クイズを見る</a></li>
-<li><a href="/quizzes/new">クイズを作る</a></li>
-<li><a href="/quizzes/edit">クイズを編集する</a></li>
-<li><a href="/quizzes/destroy">クイズを削除する</a></li>
-
-<%= @quizzes.each do |quiz| %>
-  <tr>
-    <td><%= quiz.quiz_title %></td>
-    <td><%= link_to 'Show', quiz %></td>
-  </tr>
-<% end %>
+<li><a href="/quizzes/show">クイズを見る・編集する・削除する</a></li>
+<li><a href="/quizzes/new">クイズを新規作成する</a></li>
