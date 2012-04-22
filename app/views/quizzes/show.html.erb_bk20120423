@@ -1,10 +1,6 @@
-<h1>Quizzes#index</h1>
-
-<li><a href="/quizzes/new">クイズを新規作成する</a></li>
-
-<table>  
+<table>
   <tr>
-    <th>Quiz_Subject</th>
+    <th>quiz_title</th>
   </tr>
 
 <% @quizzes.each do |quiz| %>
@@ -15,3 +11,5 @@
   </tr>
 <% end %>
 </table>
+
+<%= link_to 'クイズページトップへ戻る', quizzes_path %>

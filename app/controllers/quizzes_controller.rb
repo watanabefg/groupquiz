@@ -9,25 +9,25 @@ class QuizzesController < ApplicationController
     end
   end
 
-#  def show
-#    @quiz = Quiz.find(params[:id])
-#    @categories = Category.find(@quiz.category_id)
-#    @category_name = @categories.name
-#
-#    respond_to do |format|
-#      format.html # show.html.erb
-#      format.json { render json: @quiz }
-#    end
-#  end
-
   def show
-    @quizzes = Quiz.all
+    @quiz = Quiz.find(params[:id])
+    @category = Category.find(@quiz.category_id)
+    @category_name = @category.name
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @quizzes }
+      format.html # show.html.erb
+      format.json { render json: @quiz }
     end
   end
+
+#  def show
+#    @quizzes = Quiz.all
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @quizzes }
+#    end
+#  end
 
 
   def new

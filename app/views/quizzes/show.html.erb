@@ -1,15 +1,19 @@
-<table>
-  <tr>
-    <th>quiz_title</th>
-  </tr>
+<p id="notice"><%= notice %></p>
 
-<% @quizzes.each do |quiz| %>
-  <tr>
-    <td><%= quiz.quiz_title %></td>
-    <td><%= link_to '編集する', edit_quiz_path(quiz) %></td>
-    <td><%= link_to '削除する', quiz, confirm: '本当に削除してもよいですか？', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+<p>
+  <b>Quiz_Title:</b>
+  <%= @quiz.quiz_title %>
+</p>
+
+<p>
+  <b>Quiz_Contentes:</b>
+  <%= @quiz.quiz_contents %>
+</p>
+
+<p>
+  <b>Quiz_Ctegory:</b>
+  <%= @category.name %>
+</p>
 
 <%= link_to 'クイズページトップへ戻る', quizzes_path %>
+
