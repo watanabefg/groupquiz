@@ -1,7 +1,7 @@
 #encoding:UTF-8
 class QuizzesController < ApplicationController
   def index
-    @quizzes = Quiz.where(:user_id => session[:user_id])
+    @quizzes = Quiz.all
 
     respond_to do |format|
       format.html # index.html.erb
