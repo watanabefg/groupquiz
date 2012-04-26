@@ -12,6 +12,7 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @category = Category.find(@quiz.category_id)
+    @user = User.find(@quiz.user_id)
     @category_name = @category.name
 
     respond_to do |format|
@@ -19,16 +20,6 @@ class QuizzesController < ApplicationController
       format.json { render json: @quiz }
     end
   end
-
-#  def show
-#    @quizzes = Quiz.all
-#
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.json { render json: @quizzes }
-#    end
-#  end
-
 
   def new
     if params[:gid] then
