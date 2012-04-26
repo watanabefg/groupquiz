@@ -23,6 +23,7 @@ Groupquiz::Application.routes.draw do
   resources :users
   resources :groups
   resources :categories
+  resources :answers
   match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
 
   # The priority is based upon order of creation:
