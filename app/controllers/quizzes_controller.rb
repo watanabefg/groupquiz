@@ -60,21 +60,24 @@ class QuizzesController < ApplicationController
   def update
     @quiz = Quiz.find(params[:id])
 
-    respond_to do |format|
-      if @quiz.update_attributes(params[:quiz])
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @quiz.errors, status: :unprocessable_entity }
+    if @quiz[:user_id] == session[:user_id] then
+      respond_to do |format|
+        if @quiz.update_attributes(params[:quiz])
+          format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @quiz.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   def destroy
     @quiz = Quiz.find(params[:id])
-    @quiz.destroy
-
+    if @quiz[:user_id] == session[:user_id] then
+      @quiz.destroy
+    end
     respond_to do |format|
       format.html { redirect_to quizzes_url }
       format.json { head :no_content }
