@@ -70,17 +70,26 @@ class QuizzesController < ApplicationController
           format.json { render json: @quiz.errors, status: :unprocessable_entity }
         end
       end
+    else
+      respond_to do |format|
+        format.html { redirect_to quizzes_url, notice: "You don't have permission!（クイズを編集することはできません。）" }
+      end
     end
   end
 
   def destroy
     @quiz = Quiz.find(params[:id])
+
     if @quiz[:user_id] == session[:user_id] then
       @quiz.destroy
-    end
-    respond_to do |format|
-      format.html { redirect_to quizzes_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to quizzes_url }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to quizzes_url, notice: "You don't have permission!（クイズを削除することはできません。）" }
+      end
     end
   end
 end
