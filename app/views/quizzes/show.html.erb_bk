@@ -17,7 +17,7 @@
     <%= f.submit %>
   </div>
   <% end %>
-<%= link_to 'クイズに解答する', url_for(:contoroller => "ansewrs", :action => "create" ) %>
+<%= link_to 'クイズに解答する', { :controller => "answers", :action => "create" } %>
 <br>
 <%= link_to 'クイズページトップへ戻る', quizzes_path %>
 
