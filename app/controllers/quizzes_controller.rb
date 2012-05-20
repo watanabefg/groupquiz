@@ -41,6 +41,8 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(params[:quiz])
+    logger.debug('ログ出力:')
+    logger.debug(params[:quiz])
 
     respond_to do |format|
       if @quiz.save
