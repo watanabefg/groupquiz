@@ -22,13 +22,16 @@ class QuizzesController < ApplicationController
   end
 
   def new
-    if params[:gid] then
-      @group_id = params[:gid]
-    end
-    @quiz = Quiz.new
-    @categories = Category.find(:all)
-
     respond_to do |format|
+      if params[:gid]
+        @group_id = params[:gid]
+      else
+        flash[:notice] = '先にクイズを公開するグループを選んでください'
+        format.html { redirect_to :controller => 'groups', :action => 'index' }
+      end
+      @quiz = Quiz.new
+      @categories = Category.find(:all)
+
       format.html # new.html.erb
       format.json { render json: @quiz }
     end
@@ -41,7 +44,6 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(params[:quiz])
-    logger.debug('ログ出力:')
     logger.debug(params[:quiz])
 
     respond_to do |format|

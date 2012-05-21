@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
         end
       end
     else
-      # TODO:間違いの時
+      # 間違いの時
       # 間違いのメッセージつきで元の質問にリダイレクトする
       flash[:warning] = @quiz.not_correct_answer_message
       respond_to do |format|
