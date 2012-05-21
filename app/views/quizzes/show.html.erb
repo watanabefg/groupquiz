@@ -14,7 +14,7 @@
 <%= f.radio_button "quiz_answer_radio", '3' %> <%= @quiz.quiz_answer3 %>
 <%= f.radio_button "quiz_answer_radio", '4' %> <%= @quiz.quiz_answer4 %>
     <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '回答する！' %>
   </div>
   <% end %>
   <p><%= link_to 'クイズページトップへ戻る', quizzes_path %></p>

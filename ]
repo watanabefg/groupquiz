@@ -23,28 +23,23 @@ class AnswersController < ApplicationController
 
     if @clear
       # 正解の時
-      # メダルを増やし、Answer.newする
-      # ただし、クイズ出題者にはポイントは加算しない
+      # メダルを増やす
+      # Answer.newする
+      # TODO:ただし、クイズ出題者にはポイントは加算しない
       @answer = Answer.new({'user_id' => Integer(user_id),'quiz_id' => Integer(quiz_id)})
+      if user_id.to_s === @quiz.user_id.to_s then
       if @answer.save then
-        if user_id != @quiz.user_id then
-          @user = User.find(@quiz.user_id)
-          @user.pointup(3)
-          @user.save
-        end
-        flash[:notice] = @quiz.correct_answer_message
-        respond_to do |format|
-          format.html { redirect_to :controller => 'quizzes',:action => 'index'}
-          #format.json { render json: @answer, status: created, location:@answer}
-        end
+        @user = User.find(@quiz.user_id)
+        @user.pointup(3)
+        @user.save
+        #format.html { redirect_to 'quizzes/'+quiz_id, notice: @quiz.correct_answer_message}
+        #format.json { render json: @answer, status: created, location:@answer}
       end
     else
       # TODO:間違いの時
-      # 間違いのメッセージつきで元の質問にリダイレクトする
-      flash[:notice] = @quiz.not_correct_answer_message
-      respond_to do |format|
-        format.html { redirect_to quizzes }
-      end
+      # エラーメッセージつきで
+      # 元の質問にリダイレクトする
+      #format.html { redirect_to 'quizzes/'+quiz_id, notice: @quiz.not_correct_answer_message}
     end
   end
 end
