@@ -41,9 +41,9 @@ class AnswersController < ApplicationController
     else
       # TODO:間違いの時
       # 間違いのメッセージつきで元の質問にリダイレクトする
-      flash[:notice] = @quiz.not_correct_answer_message
+      flash[:warning] = @quiz.not_correct_answer_message
       respond_to do |format|
-        format.html { redirect_to quizzes }
+        format.html { redirect_to :controller => 'quizzes',:action => 'show', :id => quiz_id }
       end
     end
   end
