@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
         end
         flash[:notice] = @quiz.correct_answer_message
         respond_to do |format|
-          format.html { redirect_to :controller => 'quizzes',:action => 'index'}
+          format.html { redirect_to :controller => 'quizzes',:action => 'show', :id => quiz_id }
           #format.json { render json: @answer, status: created, location:@answer}
         end
       end
