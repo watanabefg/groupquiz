@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
       # ただし、クイズ出題者にはポイントは加算しない
       @answer = Answer.new({'user_id' => Integer(user_id),'quiz_id' => Integer(quiz_id)})
       if @answer.save then
-        if user_id != @quiz.user_id then
+        if user_id.to_s != @quiz.user_id.to_s then
           @user = User.find(@quiz.user_id)
           @user.pointup(3)
           @user.save
