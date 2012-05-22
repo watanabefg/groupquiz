@@ -9,12 +9,12 @@
 <% end %>
   <%= f.label :title,  "グループ名" %>
   <%= f.text_field :title%>
-  <%= f.button "新規登録", :class => "btn" %>
   <div class="field">
     <p>クイズのカテゴリを選択してください。</p>
     <%= f.radio_button "group_category_radio", '1' %>４択クイズ
     <%= f.radio_button "group_category_radio", '2' %>パターン診断
     <%= f.radio_button "group_category_radio", '3' %>テスト
   </div>
+  <%= f.button "新規登録", :class => "btn" %>
 <% end %>
 
