@@ -5,13 +5,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    # logをはく
-    logger.debug("hoge")
-
-=======
     logger.debug('answers createが通過されているか？')
->>>>>>> 531a736d8c5f0225c56e4b4e850a503814c9b7b8
     data = params[:quiz]
     logger.debug(params[:quiz])
     quiz_id = data["id"]
@@ -29,13 +23,6 @@ class AnswersController < ApplicationController
     end
 
     if @clear
-<<<<<<< HEAD
-      # TODO:正解の時
-      if @answer.save
-      # 正解者のメダルを増やす
-        @user = User.find(data["user_id"])
-        @user.pointup(5)
-=======
       # 正解の時
       # メダルを増やし、Answer.newする
       # ただし、クイズ出題者にはポイントは加算しない
@@ -51,7 +38,6 @@ class AnswersController < ApplicationController
           format.html { redirect_to :controller => 'quizzes',:action => 'show', :id => quiz_id }
           #format.json { render json: @answer, status: created, location:@answer}
         end
->>>>>>> 531a736d8c5f0225c56e4b4e850a503814c9b7b8
       end
     else
       # 間違いの時
