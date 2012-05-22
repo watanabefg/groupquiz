@@ -25,6 +25,7 @@ class QuizzesController < ApplicationController
     respond_to do |format|
       if params[:gid]
         @group_id = params[:gid]
+        @group = Group.find(@group_id)
       else
         flash[:notice] = '先にクイズを公開するグループを選んでください'
         format.html { redirect_to :controller => 'groups', :action => 'index' }
