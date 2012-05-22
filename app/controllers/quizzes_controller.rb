@@ -44,7 +44,6 @@ class QuizzesController < ApplicationController
 
     respond_to do |format|
       if @quiz.save
-        # TODO:登録したユーザーに5ポイントあげる
         @user = User.find(@quiz.user_id)
         @user.pointup(5)
 

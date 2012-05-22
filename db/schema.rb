@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426140146) do
+ActiveRecord::Schema.define(:version => 20120522163747) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(:version => 20120426140146) do
   create_table "groups", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "group_category_radio"
   end
 
   create_table "quizzes", :force => true do |t|
