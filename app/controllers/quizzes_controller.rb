@@ -22,13 +22,16 @@ class QuizzesController < ApplicationController
   end
 
   def new
-    if params[:gid] then
-      @group_id = params[:gid]
-    end
-    @quiz = Quiz.new
-    @categories = Category.find(:all)
-
     respond_to do |format|
+      if params[:gid]
+        @group_id = params[:gid]
+      else
+        flash[:notice] = '先にクイズを公開するグループを選んでください'
+        format.html { redirect_to :controller => 'groups', :action => 'index' }
+      end
+      @quiz = Quiz.new
+      @categories = Category.find(:all)
+
       format.html # new.html.erb
       format.json { render json: @quiz }
     end
@@ -41,13 +44,15 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(params[:quiz])
+    logger.debug(params[:quiz])
 
     respond_to do |format|
       if @quiz.save
         @user = User.find(@quiz.user_id)
         @user.pointup(5)
+        @user.save
 
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
+        format.html { redirect_to @quiz, notice: 'クイズが作成されました! 5枚メダルが追加されました!' }
         format.json { render json: @quiz, status: :created, location: @quiz }
       else
         format.html { render action: "new" }
@@ -62,7 +67,7 @@ class QuizzesController < ApplicationController
     if @quiz[:user_id] == session[:user_id] then
       respond_to do |format|
         if @quiz.update_attributes(params[:quiz])
-          format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
+          format.html { redirect_to @quiz, notice: 'クイズが更新されました!' }
           format.json { head :no_content }
         else
           format.html { render action: "edit" }
@@ -71,7 +76,7 @@ class QuizzesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to quizzes_url, notice: "You don't have permission!（クイズを編集することはできません。）" }
+        format.html { redirect_to quizzes_url, notice: "あなたはこのクイズを編集することはできません。" }
       end
     end
   end
@@ -87,7 +92,7 @@ class QuizzesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { redirect_to quizzes_url, notice: "You don't have permission!（クイズを削除することはできません。）" }
+        format.html { redirect_to quizzes_url, notice: "あなたはこのクイズを削除することはできません。" }
       end
     end
   end

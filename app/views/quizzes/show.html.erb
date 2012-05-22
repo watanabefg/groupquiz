@@ -15,10 +15,14 @@
 <%= f.radio_button "quiz_answer_radio", '3' %> <%= @quiz.quiz_answer3 %>
 <%= f.radio_button "quiz_answer_radio", '4' %> <%= @quiz.quiz_answer4 %>
     <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '回答する！' %>
   </div>
   <% end %>
+<<<<<<< HEAD
 <%= #link_to 'クイズに解答する', url_for(:contoroller => "answers", :action => "create" ) %>
 <br>
 <%= link_to 'クイズページトップへ戻る', quizzes_path %>
+=======
+  <p><%= link_to 'グループページへ戻る', '/groups/'+@quiz.group_id.to_s %></p>
+>>>>>>> 531a736d8c5f0225c56e4b4e850a503814c9b7b8
 
