@@ -53,15 +53,28 @@
 <% else %>
 <%= f.hidden_field :quiz_answer_radio, :value => '1' %>
 <% end %>
+
+<% if @group.group_category_radio != 2  then %>
   <div class="field">
     <%= f.label :correct_answer_message,"クイズ正解時のメッセージ" %> <%= f.text_field :correct_answer_message %>
   </div>
-  <% if @group.group_category_radio != 2  then %>
   <div class="field">
     <%= f.label :not_correct_answer_message,"クイズ不正解時のメッセージ" %> <%= f.text_field :not_correct_answer_message %>
   </div>
 <% else %>
-<%= f.hidden_field :not_correct_answer_message, :value => ' ' %>
+  <div class="field">
+    <%= f.label :correct_answer_message,"選択肢1を選んだ時のメッセージ" %> <%= f.text_field :correct_answer_message %>
+  </div>
+  <div class="field">
+    <%= f.label :correct_answer_message2,"選択肢2を選んだ時のメッセージ" %> <%= f.text_field :correct_answer_message2 %>
+  </div>
+  <div class="field">
+    <%= f.label :correct_answer_message3,"選択肢3を選んだ時のメッセージ" %> <%= f.text_field :correct_answer_message3 %>
+  </div>
+  <div class="field">
+    <%= f.label :correct_answer_message4,"選択肢4を選んだ時のメッセージ" %> <%= f.text_field :correct_answer_message4 %>
+  </div>
+  <%= f.hidden_field :not_correct_answer_message, :value => ' ' %>
 <% end %>
     <div class="field">
     <%= f.label :category_id,"カテゴリー" %> <%= f.select :category_id, @categories.collect{|p| [p.name, p.id]} %><a target="_blank" href="/categories/new">新しいカテゴリーを作る</a>
