@@ -1,3 +1,4 @@
+# encoding:UTF-8
 Groupquiz::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -34,4 +35,10 @@ Groupquiz::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ### TODO:paypalを利用するために必要なコード
+  #        テストモードであることを明記している
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+  end
 end
