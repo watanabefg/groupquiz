@@ -11,6 +11,7 @@ end
 Factory.define :group do |group|
   group.user_id  "1"
   group.title "タイトルのテスト"
+  group.price 1000
 end
 Factory.define :belongs_to_group do |belongs_to_group|
   belongs_to_group.user_id "1"

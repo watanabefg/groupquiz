@@ -7,6 +7,7 @@ describe Group do
       @attr = {
         :user_id => 1, 
         :title => "グループテスト", 
+        :price => 0, 
       }
     end
 
@@ -20,6 +21,12 @@ describe Group do
       group.should_not be_valid
     end
 
+    it "料金がないと検証NGであること" do
+      group = Group.new(@attr.merge(:price => ""))
+      group.should_not be_valid
+    end
+
+
     it "タイトルが6文字未満だとスパムの疑いがあるので、検証NGであること" do
       short = "a"*5
       group = Group.new(@attr.merge(:title => short))
@@ -29,6 +36,12 @@ describe Group do
     it "タイトルが50文字を超えると検証NGであること" do
       longname = "a"*51
       group = Group.new(@attr.merge(:title => longname))
+      group.should_not be_valid
+    end
+
+    it "グループの参加料は数字であること" do
+      price = "aa"
+      group = Group.new(@attr.merge(:price => price))
       group.should_not be_valid
     end
 
