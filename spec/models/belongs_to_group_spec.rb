@@ -33,5 +33,7 @@ describe BelongsToGroup do
       @belongstogroup.group_id = nil
       @belongstogroup.should_not be_valid
     end
+    it "user_idとgroup_idの組み合わせが既に存在していたら登録できないこと" do
+    end
   end # バリデーションの検証
 end

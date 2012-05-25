@@ -56,10 +56,39 @@ class GroupsController < ApplicationController
     end
   end
 
+  def dropin
+    logger.debug('dropinメソッドにきてる')
+    # ログインユーザーはsession["user_id"]にある
+    belongs = {
+      "user_id" => session["user_id"],
+      "group_id" => params[:id]
+    }
+    @belongstogroup = BelongsToGroup.new(belongs)
+    @group = Group.find(params[:id])
+
+    if @belongstogroup.save then
+      flash[:success] = "このグループに参加しました"
+    else
+      flash[:error] = "グループへの参加に失敗しました"
+    end
+    redirect_to @group
+  end
+
   def show
     @group = Group.find(params[:id])
+
+    belongstogroup = BelongsToGroup.
+      where('user_id = ?', session[:user_id]).
+      where('group_id = ?', params[:id])
+
+    # 参加しているかどうかのフラグ
+    @belongstogroup = false
+    belongstogroup.each do |b|
+      @belongstogroup = true
+    end
+
     @quizzes = @group.quizzes
-    @user = @group.users
+    @user = User.find(@group.user_id)
     @title = @group.title
   end
 
@@ -86,21 +115,26 @@ class GroupsController < ApplicationController
     @belongstogroup = BelongsToGroup.
       where('user_id = ?', params[:group][:user_id]).
       where('group_id = ?', params[:id])
-    BelongsToGroup.destroy(@belongstogroup)
+    # 存在していれば削除する
+    @belongstogroup.each do |b|
+      BelongsToGroup.destroy(@belongstogroup)
+      if @group.user_id.to_s === params[:group][:user_id].to_s then
+        # グループのオーナーだったら
+        # 関連モデルに他のユーザーがいるか確認
+        # いなければ削除
+        # いれば次のオーナーを決める画面に遷移
+        bg = BelongsToGroup.where('group_id = ?', params[:id])
 
-    if @group.user_id.to_s === params[:group][:user_id].to_s then
-      # グループのオーナーだったら
-      # 関連モデルに他のユーザーがいるか確認
-      # いなければ削除
-      # いれば次のオーナーを決める画面に遷移
-      bg = BelongsToGroup.where('group_id = ?', params[:id])
-
-      if bg === [] then
-        Group.delete(@group)
-      else
-        redirect_to edit_group_path(@group) and return
+        if bg === [] then
+          Group.delete(@group)
+        else
+          redirect_to edit_group_path(@group) and return
+        end
       end
+      flash[:success] = "このグループから抜けました。"
+      redirect_to :action => 'index' and return
     end
+    flash[:success] = "このグループには入っていません。"
     redirect_to :action => 'index'
   end
 

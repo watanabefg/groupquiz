@@ -1,7 +1,6 @@
 <h1><%= @group.title %></h1>
-<% @user.each do |u| %>
-  <p>このグループは<%= u.name %>によって作成されました。</p>
-<% end %>
+<p>このグループは<%= @user.name %>によって作成されました。</p>
+<%= @t %>
 <div class="row-fluid">
   <div class="span9">
     <h2>このグループにあるクイズ</h2>
@@ -17,12 +16,14 @@
       <h3>グループメンバー一覧</h3>
       <p>ここできてない</p>
       <h3>グループ管理</h3>
-      <% @user.each do |u| %>
-        <% if @group.user_id == u.id %>
+        <% if current_user == @user.id %>
         <p><a class="btn" href="<%= @group.id %>/edit">このグループを編集する</a></p>
         <% end %>
-      <% end %>
+        <% if !@belongstogroup %>
+      <p><a id="dropin" class="btn" data-toggle="modal" href="/groups/<%= @group.id %>/dropin">このグループに入る</a></p>
+        <% else %>
       <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
+        <% end %>
       <p><a href="/quizzes/new?gid=<%= @group.id %>">クイズを作る</a></p>
     </div>
   </div>
