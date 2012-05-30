@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.find(:all)
     @title = "ユーザーログイン"
+    @ranking = User.find_by_sql("SELECT name FROM users ORDER BY possession_medals DESC")
   end
 
   def callback
