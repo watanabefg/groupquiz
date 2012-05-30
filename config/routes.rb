@@ -12,6 +12,7 @@ Groupquiz::Application.routes.draw do
   get "groups/ordergroup"
   get "groups/orderowner"
   get "groups/orderupdated"
+  get "groups/checkout"
 
   root :to => "users#index"
   match "/signin" => "sessions#new", :as => :signin

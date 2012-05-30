@@ -1,5 +1,7 @@
 # encoding:UTF-8
 class GroupsController < ApplicationController
+  include ActiveMerchant::Billing
+
   def new
     @group = Group.new
     @title = "グループの作成|Groupquiz:クイズで楽しく情報共有"
@@ -136,6 +138,38 @@ class GroupsController < ApplicationController
     end
     flash[:success] = "このグループには入っていません。"
     redirect_to :action => 'index'
+  end
+
+  def checkout
+    setup_response = gateway.setup_purchase(5000,
+      :ip                 => request.remote_ip,
+      :return_url         => url_for(:action => 'confirm', :only_path => false),
+      :cancel_return_url  => url_for(:action => 'index', :only_path => false)
+    )
+    redirect_to gateway.redirect_url_for(setup_response.token)
+  end
+
+  def confirm
+    redirect_to :action => 'index' unless params[:token]
+
+    details_response = gateway.details_for(params[:token])
+
+    if !details_response.success?
+      @message = details_response.message
+      render :action => 'error'
+      return
+    end
+
+    @address = details_response.address
+  end
+
+  private
+  def gateway
+    @gateway ||= PaypalExpressGateway.new(
+      :login => 'sheo30_1338283608_biz_api1.hotmail.co.jp',
+      :password => '1338283627',
+      :signature => 'ADooGyqEq0Wdvmbp8Y80f0bEvtI5ANpCwblvOqMxUKYCmJOs2TFsDz-p'
+    )
   end
 
 end
