@@ -1,13 +1,16 @@
-<h1>お支払い内容の確認</h1>
-<table>
-  <tr><td>お名前</td><td><%= @address['name'] %></td></tr>
-  <tr><td>社名</td><td><%= @address['company'] %></td></tr>
-  <tr><td>国</td><td><%= @address['country'] %></td></tr>
-  <tr><td>郵便番号</td><td><%= @address['zip'] %></td></tr>
-  <tr><td>都道府県</td><td><%= @address['state'] %></td></tr>
-  <tr><td>市町村</td><td><%= @address['city'] %></td></tr>
-  <tr><td>住所1</td><td><%= @address['address1'] %></td></tr>
-  <tr><td>住所2</td><td><%= @address['address2'] %></td></tr>
+<h1>ご請求内容の確認</h1>
+<table class="table table-striped">
+  <tbody>
+  <tr><th>お名前</th><td><%= @address['name'] %></td></tr>
+  <tr><th>社名</th><td><%= @address['company'] %></td></tr>
+  <tr><th>国</th><td><%= @address['country'] %></td></tr>
+  <tr><th>郵便番号</th><td><%= @address['zip'] %></td></tr>
+  <tr><th>都道府県</th><td><%= @address['state'] %></td></tr>
+  <tr><th>市町村</th><td><%= @address['city'] %></td></tr>
+  <tr><th>住所1</th><td><%= @address['address1'] %></td></tr>
+  <tr><th>住所2</th><td><%= @address['address2'] %></td></tr>
+  <tr><th>ご請求金額</th><td><%= @group.price %>円</td></tr>
+</tbody>
 </table>
 <%= form_tag :action => 'complete',:token => params[:token], :payer_id => params[:PayerID] do %>
   <%= submit_tag '支払いを済ませる' %>

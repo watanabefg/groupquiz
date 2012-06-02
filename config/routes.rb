@@ -12,7 +12,6 @@ Groupquiz::Application.routes.draw do
   get "groups/ordergroup"
   get "groups/orderowner"
   get "groups/orderupdated"
-  get "groups/checkout"
   get "groups/confirm"
   get "groups/error"
 
@@ -29,6 +28,7 @@ Groupquiz::Application.routes.draw do
   resources :answers
   match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
   match "groups/:id/dropin", :to => "groups#dropin", :as => :dropin
+  match "groups/:id/checkout", :to => "groups#checkout", :as => :checkout_group
   match "groups/complete", :to => "groups#complete"
 
   # The priority is based upon order of creation:

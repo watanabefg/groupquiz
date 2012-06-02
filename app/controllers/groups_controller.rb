@@ -141,7 +141,10 @@ class GroupsController < ApplicationController
   end
 
   def checkout
-    setup_response = gateway.setup_purchase(200,
+    session[:group_id] = params[:id]
+    @group = Group.find(params[:id])
+    # 100 * するのは、日本円対応のため
+    setup_response = gateway.setup_purchase(100 * @group.price,
       :ip                 => request.remote_ip,
       :return_url         => url_for(:controller => 'groups', :action => 'confirm', :only_path => false),
       :cancel_return_url  => url_for(:controller => 'groups', :action => 'index', :only_path => false)
@@ -159,12 +162,15 @@ class GroupsController < ApplicationController
       render :action => 'error'
       return
     end
+    @group = Group.find(session[:group_id])
 
     @address = details_response.address
   end
 
   def complete
-    purchase = gateway.purchase(200,
+    group = Group.find(session[:group_id])
+    # 100 * するのは、日本円対応のため
+    purchase = gateway.purchase(100 * group.price,
                                 :ip => request.remote_ip,
                                 :payer_id => params[:payer_id],
                                 :token => params[:token]
@@ -174,6 +180,7 @@ class GroupsController < ApplicationController
       render :action => 'error'
       return
     end
+    # サンキュー画面でdropinにしても良いかも。
   end
 
   private
