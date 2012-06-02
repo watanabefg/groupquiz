@@ -10,8 +10,12 @@ class User < ActiveRecord::Base
     create!do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.name = auth["info"]["name"]
-      user.email_address = auth["info"]["email"]
+      if auth["provider"].to_s == "facebook" then
+        user.name = auth["info"]["name"]
+        user.email_address = auth["info"]["email"]
+      elsif auth["provider"].to_s == "twitter" then
+        user.name = auth["user_info"]["name"]
+      end
       #if auth["gender"] === "male" then
       #  user.sex_id = 1
       #else

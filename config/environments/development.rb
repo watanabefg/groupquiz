@@ -40,5 +40,7 @@ Groupquiz::Application.configure do
   #        テストモードであることを明記している
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
+    ### TODO:以下は本番でも必要。デフォルト通貨を日本円にしている。
+    ActiveMerchant::Billing::PaypalExpressGateway.default_currency = 'JPY'
   end
 end

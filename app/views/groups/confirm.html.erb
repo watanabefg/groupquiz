@@ -1,0 +1,15 @@
+<h1>お支払い内容の確認</h1>
+<table>
+  <tr><td>お名前</td><td><%= @address['name'] %></td></tr>
+  <tr><td>社名</td><td><%= @address['company'] %></td></tr>
+  <tr><td>国</td><td><%= @address['country'] %></td></tr>
+  <tr><td>郵便番号</td><td><%= @address['zip'] %></td></tr>
+  <tr><td>都道府県</td><td><%= @address['state'] %></td></tr>
+  <tr><td>市町村</td><td><%= @address['city'] %></td></tr>
+  <tr><td>住所1</td><td><%= @address['address1'] %></td></tr>
+  <tr><td>住所2</td><td><%= @address['address2'] %></td></tr>
+</table>
+<%= form_tag :action => 'complete',:token => params[:token], :payer_id => params[:PayerID] do %>
+  <%= submit_tag '支払いを済ませる' %>
+<% end %>
+

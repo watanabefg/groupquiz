@@ -141,10 +141,10 @@ class GroupsController < ApplicationController
   end
 
   def checkout
-    setup_response = gateway.setup_purchase(5000,
+    setup_response = gateway.setup_purchase(200,
       :ip                 => request.remote_ip,
-      :return_url         => url_for(:action => 'confirm', :only_path => false),
-      :cancel_return_url  => url_for(:action => 'index', :only_path => false)
+      :return_url         => url_for(:controller => 'groups', :action => 'confirm', :only_path => false),
+      :cancel_return_url  => url_for(:controller => 'groups', :action => 'index', :only_path => false)
     )
     redirect_to gateway.redirect_url_for(setup_response.token)
   end
@@ -161,6 +161,19 @@ class GroupsController < ApplicationController
     end
 
     @address = details_response.address
+  end
+
+  def complete
+    purchase = gateway.purchase(200,
+                                :ip => request.remote_ip,
+                                :payer_id => params[:payer_id],
+                                :token => params[:token]
+                               )
+    if !purchase.success?
+      @message = purchase.message
+      render :action => 'error'
+      return
+    end
   end
 
   private

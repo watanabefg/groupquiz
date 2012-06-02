@@ -13,10 +13,12 @@ Groupquiz::Application.routes.draw do
   get "groups/orderowner"
   get "groups/orderupdated"
   get "groups/checkout"
+  get "groups/confirm"
+  get "groups/error"
 
   root :to => "users#index"
   match "/signin" => "sessions#new", :as => :signin
-  match "/auth/facebook/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout  
   match "/features" => "pages#features"
   match "/plans" => "pages#plans"
@@ -27,6 +29,7 @@ Groupquiz::Application.routes.draw do
   resources :answers
   match "groups/:id/dropout", :to => "groups#dropout", :as => :dropout_group
   match "groups/:id/dropin", :to => "groups#dropin", :as => :dropin
+  match "groups/complete", :to => "groups#complete"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
