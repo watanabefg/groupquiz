@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @users = User.find(:all)
     @title = "ユーザーログイン"
     @user_ranking = User.find_by_sql("SELECT * FROM users ORDER BY possession_medals DESC LIMIT 10")
-    group_ranking_sql = "select g.* from groups g,(select group_id,count(*) as number from belongs_to_groups group by group_id) a where g.id = a.group_id order by a.number desc limit 10"
+    group_ranking_sql = "select g.* from groups g,(select group_id,count(*) as number from belongs_to_groups group by group_id) a where g.id = a.group_id order by a.number desc limit 5"
     @group_ranking = Group.find_by_sql(group_ranking_sql)
   end
 
