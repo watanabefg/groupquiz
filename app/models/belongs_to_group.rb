@@ -1,5 +1,6 @@
 class BelongsToGroup < ActiveRecord::Base
   attr_accessible :user_id, :group_id
+  has_many :users
   belongs_to :user
   belongs_to :group
   validates :user_id, :presence => true

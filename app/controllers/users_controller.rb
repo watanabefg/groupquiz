@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   def index
     @users = User.find(:all)
     @title = "ユーザーログイン"
-    @ranking = User.find_by_sql("SELECT name FROM users ORDER BY possession_medals DESC")
+    @user_ranking = User.find_by_sql("SELECT name FROM users ORDER BY possession_medals DESC LIMIT 10")
+    @group_ranking = Group.find_by_sql("SELECT title FROM belongs_to_groups INNER JOIN groups ON belongs_to_groups.group_id = groups.id GROUP BY group_id ORDER BY count(*) DESC LIMIT 5") 
   end
 
   def callback
