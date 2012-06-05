@@ -8,10 +8,18 @@
 </ul>
 <p>
   <b>保有メダル数ランキング（上記１０名）</b><br>
-  <%= @user_ranking %>
+  <ul>
+  <% @user_ranking.each do |u| %>
+    <li><%= link_to u.name, u %></li>
+  <% end %>
+</ul>
 </p>
 
 <p>
   <b>人気グループランキング（参加数上位５位）</b><br>
-  <%= @group_ranking %>
+  <ul>
+  <% @group_ranking.each do |g| %>
+    <li><%= link_to g.title, g %></li>
+  <% end %>
+</ul>
 </p>
