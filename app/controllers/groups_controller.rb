@@ -90,6 +90,8 @@ class GroupsController < ApplicationController
     end
 
     @quizzes = @group.quizzes
+    @members = @group.users
+    # オーナーユーザー
     @user = User.find(@group.user_id)
     @title = @group.title
   end

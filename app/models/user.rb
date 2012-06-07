@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :birthday, :sex_id, :email_address, :password
   validates :name, :presence => true, :length => {:maximum => 50}
+  # users : belongs_to_groups = 1:*
   has_many :belongs_to_groups, :foreign_key => "user_id", :dependent => :destroy
-  has_many :groups, :through => :belongs_to_users
+  has_many :groups, :through => :belongs_to_groups
   has_many :quiz, :foreign_key => "user_id", :dependent => :destroy
   belongs_to :sex
 
