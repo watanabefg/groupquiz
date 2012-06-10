@@ -20,6 +20,8 @@ class GroupsController < ApplicationController
       end
     else
       @group = Group.all(:order => 'created_at desc', :limit => 20)
+      # TODO:Usersとleft outer joinする。バグがあるので修正する必要あり
+      #@group = Group.includes(:user).order('groups.created_at desc').limit(20)
       @title = "グループの一覧"
     end
   end
@@ -59,7 +61,6 @@ class GroupsController < ApplicationController
   end
 
   def dropin
-    logger.debug('dropinメソッドにきてる')
     # ログインユーザーはsession["user_id"]にある
     belongs = {
       "user_id" => session["user_id"],
@@ -161,9 +162,11 @@ class GroupsController < ApplicationController
 
     if !details_response.success?
       @message = details_response.message
+      @title = 'エラーが発生しました'
       render :action => 'error'
       return
     end
+    @title = "ご請求内容の確認"
     @group = Group.find(session[:group_id])
 
     @address = details_response.address
@@ -179,10 +182,26 @@ class GroupsController < ApplicationController
                                )
     if !purchase.success?
       @message = purchase.message
+      @title = 'エラーが発生しました'
       render :action => 'error'
       return
     end
-    # サンキュー画面でdropinにしても良いかも。
+    @title = "お支払い完了"
+    # NOTE:サンキュー画面にリンクを張ってしまうと、
+    # リンクのクリック忘れのときに手間が発生するので
+    # 自動的に登録する
+    # TODO:dropinの内容をコピーしてきたので、後で共通メソッドを作る
+    belongs = {
+      "user_id" => session["user_id"],
+      "group_id" => session[:group_id]
+    }
+    @belongstogroup = BelongsToGroup.new(belongs)
+
+    if @belongstogroup.save then
+      flash[:success] = "このグループに参加しました"
+    else
+      flash[:error] = "グループへの参加に失敗しました。管理者に連絡してください。"
+    end
   end
 
   private

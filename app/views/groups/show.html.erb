@@ -25,15 +25,17 @@
         <p><a class="btn" href="<%= @group.id %>/edit">このグループを編集する</a></p>
         <% end %>
         <% if !@belongstogroup %>
-          <p><a id="dropin" class="btn" data-toggle="modal" href="/groups/<%= @group.id %>/dropin">このグループに入る</a><br /><span style="font-weight:bold;"><%= @group.price %>円(税込)</span>
           <% if @group.price > 0 %>
+            <p>このグループの参加料:<span style="font-weight:bold;"><%= @group.price %>円(税込)</span></p>
             <p><%= link_to image_tag('https://www.paypal.com/ja_JP/i/btn/btn_xpressCheckout.gif'), :action => 'checkout', :id => @group.id %></p>
+          <% else %>
+            <p><a id="dropin" class="btn" data-toggle="modal" href="/groups/<%= @group.id %>/dropin">このグループに入る</a>
           <% end %>
           </p>
         <% else %>
-      <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
+        <p><a href="/quizzes/new?gid=<%= @group.id %>">クイズを作る</a></p>
+        <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
         <% end %>
-      <p><a href="/quizzes/new?gid=<%= @group.id %>">クイズを作る</a></p>
     </div>
   </div>
 </div>
