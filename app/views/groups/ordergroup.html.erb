@@ -13,14 +13,14 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th><%= link_to 'グループ名▼', 'ordergroup' %></th><th><%= link_to 'オーナー', 'orderowner' %></th><th><%= link_to '更新日', 'orderupdated' %></th>
+          <th><%= link_to 'グループ名▼', '/groups/ordergroup' %></th><th><%= link_to 'オーナー', '/groups/orderowner' %></th><th><%= link_to '更新日', '/groups/orderupdated' %></th>
         </tr>
       </thead>
       <tbody>
         <% @group.each do |g| %>
           <tr>
             <td><%= link_to g.title, g %></td><td>
-                <%= g.name %>
+                <%= g.user.name %>
               </td><td><%= g.updated_at %></td>
           </tr>
         <% end %>

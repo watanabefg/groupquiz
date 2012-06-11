@@ -7,4 +7,5 @@ class Group < ActiveRecord::Base
   # groups : belongs_to_groups = 1:*
   has_many :belongs_to_groups, :foreign_key => "group_id", :dependent => :destroy
   has_many :users, :through => :belongs_to_groups
+  belongs_to :user
 end
