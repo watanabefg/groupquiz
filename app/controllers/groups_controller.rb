@@ -9,35 +9,35 @@ class GroupsController < ApplicationController
 
   def index
     if params[:cond] === 'owner' then
+      # TODO:バグあり
       @group = Group.where('user_id = ?', params[:user_id])
       @title = "参加中のグループの一覧"
     elsif params[:cond] === 'part' then
       @group = Group.where('id = 0')
       @belongstogroup = BelongsToGroup.where('user_id = ?', params[:user_id])
       @belongstogroup.each do |b|
+        # TODO:バグあり
         @group = Group.where('id = ?', b.group_id)
         @title = "参加中のグループの一覧"
       end
     else
-      @group = Group.all(:order => 'created_at desc', :limit => 20)
-      # TODO:Usersとleft outer joinする。バグがあるので修正する必要あり
-      #@group = Group.includes(:user).order('groups.created_at desc').limit(20)
+      @group = Group.find_by_sql("SELECT g.*,u.name FROM groups g,users u WHERE g.user_id = u.id ORDER BY created_at DESC LIMIT 20")
       @title = "グループの一覧"
     end
   end
 
   def ordergroup
-    @group = Group.all(:order => 'title desc', :limit => 20)
+    @group = Group.find_by_sql("SELECT g.*,u.name FROM groups g,users u WHERE g.user_id = u.id ORDER BY title DESC LIMIT 20")
     @title = "グループの一覧"
   end
 
   def orderowner
-    @group = Group.all(:order => 'user_id desc', :limit => 20)
+    @group = Group.find_by_sql("SELECT g.*,u.name FROM groups g,users u WHERE g.user_id = u.id ORDER BY user_id DESC LIMIT 20")
     @title = "グループの一覧"
   end
 
   def orderupdated
-    @group = Group.all(:order => 'updated_at desc', :limit => 20)
+    @group = Group.find_by_sql("SELECT g.*,u.name FROM groups g,users u WHERE g.user_id = u.id ORDER BY updated_at DESC LIMIT 20")
     @title = "グループの一覧"
   end
 

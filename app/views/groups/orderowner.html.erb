@@ -19,9 +19,8 @@
   <tbody>
 <% @group.each do |g| %>
     <tr>
-            <td><%= link_to g.title, g %></td><td><% g.users(g.user_id).each do |u| %>
-                <%= u.name %>
-              <% end %> 
+            <td><%= link_to g.title, g %></td><td>
+                <%= g.name %>
               </td><td><%= g.updated_at %></td>
     </tr>
 <% end %>
