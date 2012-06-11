@@ -1,5 +1,5 @@
-class AddIndexBelongsToGroups < ActiveRecord::Migration
+class ChangeBelongsToGroups < ActiveRecord::Migration
   def change
-    add_index :belongstogroups, [:user_id, :group_id], unique: true
+    add_index :belongs_to_groups, [:user_id, :group_id], unique: true
   end
 end

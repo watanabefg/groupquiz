@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524151353) do
+ActiveRecord::Schema.define(:version => 20120525070952) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120524151353) do
   end
 
   add_index "belongs_to_groups", ["group_id"], :name => "index_belongs_to_groups_on_group_id"
+  add_index "belongs_to_groups", ["user_id", "group_id"], :name => "index_belongs_to_groups_on_user_id_and_group_id", :unique => true
   add_index "belongs_to_groups", ["user_id"], :name => "index_belongs_to_groups_on_user_id"
 
   create_table "categories", :force => true do |t|
