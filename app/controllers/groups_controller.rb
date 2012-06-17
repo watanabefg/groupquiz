@@ -63,13 +63,21 @@ class GroupsController < ApplicationController
   end
 
   def dropin
-    # ログインユーザーはsession["user_id"]にある
+    @group = Group.find(params[:id])
+    if @group.price > 0 then
+      @payment = Payment.where(["user_id = ? and group_id = ?", session["user_id"], params[:id]]).first
+      if @payment.nil? then
+        flash[:error] = "支払いができていないためこのグループへは参加できません。"
+        redirect_to @group
+        return
+      end
+    end
+
     belongs = {
       "user_id" => session["user_id"],
       "group_id" => params[:id]
     }
     @belongstogroup = BelongsToGroup.new(belongs)
-    @group = Group.find(params[:id])
 
     if @belongstogroup.save then
       flash[:success] = "このグループに参加しました"
@@ -191,13 +199,26 @@ class GroupsController < ApplicationController
     @title = "お支払い完了"
     # NOTE:サンキュー画面にリンクを張ってしまうと、
     # リンクのクリック忘れのときに手間が発生するので
-    # 自動的に登録する
+    # 支払い管理と所属には自動的に登録する
+    data = {
+      "user_id" => session["user_id"],
+      "group_id" => session[:group_id],
+      "shiharaikbn" => 1,
+    }
+    @payment = Payment.new(data)
+    if !@payment.save then
+      @message = "支払い登録に失敗しました。管理者に連絡してください。"
+      @title = 'エラーが発生しました'
+      render :action => 'error'
+      return
+    end
+
     # TODO:dropinの内容をコピーしてきたので、後で共通メソッドを作る
-    belongs = {
+    belongstogroup = {
       "user_id" => session["user_id"],
       "group_id" => session[:group_id]
     }
-    @belongstogroup = BelongsToGroup.new(belongs)
+    @belongstogroup = BelongsToGroup.new(belongstogroup)
 
     if @belongstogroup.save then
       flash[:success] = "このグループに参加しました"
