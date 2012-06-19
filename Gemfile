@@ -9,8 +9,9 @@ gem 'rails', '3.2.2'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-twitter'
 gem 'activemerchant'
+gem 'rubytter'
+gem 'oauth'
 group :development do
   gem 'rspec-rails'
 end
