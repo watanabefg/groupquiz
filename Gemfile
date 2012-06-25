@@ -12,6 +12,7 @@ gem 'omniauth-facebook'
 gem 'activemerchant'
 gem 'rubytter'
 gem 'oauth'
+
 group :development do
   gem 'rspec-rails'
 end

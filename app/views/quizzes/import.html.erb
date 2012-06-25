@@ -1,0 +1,13 @@
+<h1>クイズのインポート</h1>
+<p>ここでカンマ(,)区切りのCSVファイルをアップロードすると「<%= @group.title %>」グループに多くのクイズをより早く作ることができます。</p>
+<%= @quiz %>
+
+<%= form_for :upload, :html => { :multipart => true } do |f| %>
+  <div class="field">
+  <%= f.file_field :csv %>
+  <%= f.submit "アップロード", :disble_width => 'アップロード中...' %>
+</div>
+<% end %>
+
+<%= link_to '戻る', quizzes_path %>
+

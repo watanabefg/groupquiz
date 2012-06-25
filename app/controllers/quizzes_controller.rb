@@ -38,6 +38,30 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def import
+    if params[:gid]
+      group_id = params[:gid]
+      @group = Group.find(group_id)
+    end
+  end
+
+  def upload
+    upload = params[:upload][:csv]
+    save_file(upload)
+  end
+
+  def save_file(upload)
+    require 'csv'
+    filename = upload.original_filename
+    filedir = 'public/upload/'
+    File.open(File.join(filedir,filename),'wb'){ |f| f.write(upload.read)}
+    # TODO:CSVを読み込んでDBにinsertする
+    #CSV.foreach(File.join(filedir,filename)) do |row|
+    #  @quiz = row
+    #  logger.debug(@quiz)
+    #end
+  end
+
   def edit
     @quiz = Quiz.find(params[:id])
     @categories = Category.find(:all)

@@ -15,6 +15,9 @@ Groupquiz::Application.routes.draw do
   get "groups/confirm"
   get "groups/error"
 
+  get "quizzes/import"
+  post "quizzes/import" => "quizzes#upload"
+
   root :to => "users#index"
   match "/signin" => "sessions#new", :as => :signin
   match "/auth/:provider/callback" => "sessions#create"

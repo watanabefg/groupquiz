@@ -34,6 +34,7 @@
           </p>
         <% else %>
         <p><a href="/quizzes/new?gid=<%= @group.id %>">クイズを作る</a></p>
+        <p><a href="/quizzes/import?gid=<%= @group.id %>">CSVをインポートする</a></p>
         <p><a id="dropout" class="btn" data-toggle="modal" href="#myModal">このグループから抜ける</a></p>
         <% end %>
     </div>
