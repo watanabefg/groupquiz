@@ -1,7 +1,5 @@
 <h1>クイズのインポート</h1>
 <p>ここでカンマ(,)区切りのCSVファイルをアップロードすると「<%= @group.title %>」グループに多くのクイズをより早く作ることができます。</p>
-<%= @quiz %>
-
 <%= form_for :upload, :html => { :multipart => true } do |f| %>
   <div class="field">
   <%= f.file_field :csv %>
@@ -9,5 +7,53 @@
 </div>
 <% end %>
 
-<%= link_to '戻る', quizzes_path %>
+
+<h2>CSVファイルの作り方</h2>
+<p>CSVファイルには1行に下記のように13個の項目をカンマ区切りで並べてください。</p>
+<p>text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13</p>
+<p>text1～text13にはそれぞれ次の項目を記載してください。</p>
+<table class="table table-striped">
+  <tbody>
+  <tr>
+    <th>text1</th><td>クイズのタイトル</td>
+  </tr>
+  <tr>
+    <th>text2</th><td>クイズの内容</td>
+  </tr>
+  <tr>
+    <th>text3</th><td>クイズのカテゴリーID</td>
+  </tr>
+  <tr>
+    <th>text4</th><td>正解したときのメッセージ(選択肢1を選んだときのメッセージ)</td>
+  </tr>
+  <tr>
+    <th>text5</th><td>間違ったときのメッセージ</td>
+  </tr>
+  <tr>
+    <th>text6</th><td>選択肢1</td>
+  </tr>
+  <tr>
+    <th>text7</th><td>選択肢2</td>
+  </tr>
+  <tr>
+    <th>text8</th><td>選択肢3</td>
+  </tr>
+  <tr>
+    <th>text9</th><td>選択肢4</td>
+  </tr>
+  <tr>
+    <th>text10</th><td>正解の選択肢番号</td>
+  </tr>
+  <tr>
+    <th>text11</th><td>選択肢2を選んだときのメッセージ</td>
+  </tr>
+  <tr>
+    <th>text12</th><td>選択肢3を選んだときのメッセージ</td>
+  </tr>
+  <tr>
+    <th>text13</th><td>選択肢4を選んだときのメッセージ</td>
+  </tr>
+  </tbody>
+</table>
+</p>
 

@@ -30,41 +30,13 @@ class QuizzesController < ApplicationController
         flash[:notice] = '先にクイズを公開するグループを選んでください'
         format.html { redirect_to :controller => 'groups', :action => 'index' }
       end
+
       @quiz = Quiz.new
       @categories = Category.find(:all)
 
       format.html # new.html.erb
       format.json { render json: @quiz }
     end
-  end
-
-  def import
-    if params[:gid]
-      group_id = params[:gid]
-      @group = Group.find(group_id)
-    end
-  end
-
-  def upload
-    upload = params[:upload][:csv]
-    save_file(upload)
-  end
-
-  def save_file(upload)
-    require 'csv'
-    filename = upload.original_filename
-    filedir = 'public/upload/'
-    File.open(File.join(filedir,filename),'wb'){ |f| f.write(upload.read)}
-    # TODO:CSVを読み込んでDBにinsertする
-    #CSV.foreach(File.join(filedir,filename)) do |row|
-    #  @quiz = row
-    #  logger.debug(@quiz)
-    #end
-  end
-
-  def edit
-    @quiz = Quiz.find(params[:id])
-    @categories = Category.find(:all)
   end
 
   def create
@@ -88,6 +60,43 @@ class QuizzesController < ApplicationController
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def import
+    if params[:gid]
+      group_id = params[:gid]
+      @group = Group.find(group_id)
+    end
+  end
+
+  def upload
+    upload = params[:upload][:csv]
+    save_file(upload)
+  end
+
+  def save_file(upload)
+    require 'csv'
+    filename = upload.original_filename
+    filedir = 'public/upload/'
+    File.open(File.join(filedir,filename),'wb'){ |f| f.write(upload.read)}
+
+    # params[:data] = { "group_id" => "1", "test" => "1"}
+    # TODO:CSVを読み込んでDBにinsertする
+    CSV.foreach(File.join(filedir,filename)) do |row|
+      params = Quiz.build_from_csv(row)
+      @quiz = Quiz.new(params)
+      if @quiz.valid?
+        @quiz.save
+      else
+        errs << row
+      end
+    end
+  end
+
+  def edit
+    @quiz = Quiz.find(params[:id])
+    @categories = Category.find(:all)
   end
 
   def tweet(message)
