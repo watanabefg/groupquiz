@@ -30,17 +30,13 @@ class QuizzesController < ApplicationController
         flash[:notice] = '先にクイズを公開するグループを選んでください'
         format.html { redirect_to :controller => 'groups', :action => 'index' }
       end
+
       @quiz = Quiz.new
       @categories = Category.find(:all)
 
       format.html # new.html.erb
       format.json { render json: @quiz }
     end
-  end
-
-  def edit
-    @quiz = Quiz.find(params[:id])
-    @categories = Category.find(:all)
   end
 
   def create
@@ -51,15 +47,63 @@ class QuizzesController < ApplicationController
       if @quiz.save
         @user = User.find(@quiz.user_id)
         @user.pointup(5)
-        @user.save
+        if @user.save
+          group = Group.find(@quiz.group_id)
+          message = '[' + group.title + ']に新しいクイズが作成されました。「'+ @quiz.quiz_title + '」 http://test.com/quizzes/' + @quiz.id.to_s
+          self.tweet(message)
 
-        format.html { redirect_to @quiz, notice: 'クイズが作成されました! 5枚メダルが追加されました!' }
-        format.json { render json: @quiz, status: :created, location: @quiz }
+          format.html { redirect_to @quiz, notice: 'クイズが作成されました! 5枚メダルが追加されました!' }
+          format.json { render json: @quiz, status: :created, location: @quiz }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def import
+    if params[:gid]
+      group_id = params[:gid]
+      @group = Group.find(group_id)
+    end
+  end
+
+  def upload
+    upload = params[:upload][:csv]
+    save_file(upload)
+  end
+
+  def save_file(upload)
+    require 'csv'
+    filename = upload.original_filename
+    filedir = 'public/upload/'
+    File.open(File.join(filedir,filename),'wb'){ |f| f.write(upload.read)}
+
+    # params[:data] = { "group_id" => "1", "test" => "1"}
+    # TODO:CSVを読み込んでDBにinsertする
+    CSV.foreach(File.join(filedir,filename)) do |row|
+      params = Quiz.build_from_csv(row)
+      @quiz = Quiz.new(params)
+      if @quiz.valid?
+        @quiz.save
+      else
+        errs << row
+      end
+    end
+  end
+
+  def edit
+    @quiz = Quiz.find(params[:id])
+    @categories = Category.find(:all)
+  end
+
+  def tweet(message)
+    oauth = Rubytter::OAuth.new('tgcpAoCHiXlLsAakh0vzNA', 'U4bLWFvPQnpUhLzVpLQiA1l7L6ZF7Ksd75uHfx9Q')
+    access_token = OAuth::AccessToken.new(oauth.create_consumer, '5903212-hoogD4kEQmaQNTYX5ETFi4ijtbGMz4x8KMRyfOI7k', 'i8fLZpdJYr4cPE01pIZawGNYYB3rtS9TfubndMdpeE')
+    rubytter = OAuthRubytter.new(access_token)
+    rubytter.update(message)
   end
 
   def update

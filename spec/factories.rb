@@ -27,3 +27,8 @@ end
 Factory.define :sex_next do |sex|
   sex.name "女"
 end
+Factory.define :payment do |payment|
+  payment.user_id "1"
+  payment.group_id "1"
+  payment.shiharaikbn true
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525070952) do
+ActiveRecord::Schema.define(:version => 20120614083940) do
 
   create_table "answers", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(:version => 20120525070952) do
     t.integer  "group_category_radio"
     t.decimal  "price"
   end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "shiharaikbn", :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "payments", ["user_id", "group_id"], :name => "index_payments_on_user_id_and_group_id", :unique => true
 
   create_table "quizzes", :force => true do |t|
     t.string   "quiz_title"
