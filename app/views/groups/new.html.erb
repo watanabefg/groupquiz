@@ -1,5 +1,6 @@
 <h1>新しいグループの作成</h1>
 <p>皆と遊ぶためのクイズグループを作成しましょう。</p>
+<p>※クイズグループとは・・・グループ名に関連したクイズの作成や、クイズの回答を可能とするものです。</p>
 <%= form_for @group do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 <% if current_user %>
