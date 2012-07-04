@@ -21,7 +21,13 @@
     <th>text2</th><td>クイズの内容</td>
   </tr>
   <tr>
-    <th>text3</th><td>クイズのカテゴリーID</td>
+    <th>text3</th><td>クイズのカテゴリーID<br />
+      <ul>
+      <% @categories.each do |c| %>
+        <li><%= c.id %>: <%= c.name %></li>
+      <% end %>
+      </ul>
+    </td>
   </tr>
   <tr>
     <th>text4</th><td>正解したときのメッセージ(選択肢1を選んだときのメッセージ)</td>

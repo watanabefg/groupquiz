@@ -64,8 +64,10 @@ class QuizzesController < ApplicationController
 
 
   def import
+    @categories = Category.find(:all)
     if params[:gid]
       group_id = params[:gid]
+      session[:gid] = group_id
       @group = Group.find(group_id)
     end
   end
@@ -81,11 +83,14 @@ class QuizzesController < ApplicationController
     filedir = 'public/upload/'
     File.open(File.join(filedir,filename),'wb'){ |f| f.write(upload.read)}
 
-    # params[:data] = { "group_id" => "1", "test" => "1"}
-    # TODO:CSVを読み込んでDBにinsertする
+    login_user_id = session[:user_id]
+    group_id = session[:gid]
+
+    # TODO:CSVを読み込んで,カテゴリーIDがなかったら
+    # insertしないようにする
     CSV.foreach(File.join(filedir,filename)) do |row|
-      params = Quiz.build_from_csv(row)
-      @quiz = Quiz.new(params)
+      data = Quiz.build_from_csv(row,login_user_id, group_id)
+      @quiz = Quiz.new(data)
       if @quiz.valid?
         @quiz.save
       else

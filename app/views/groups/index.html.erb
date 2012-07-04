@@ -19,9 +19,18 @@
       <tbody>
         <% @group.each do |g| %>
           <tr>
-            <td><%= link_to g.title, g %></td><td>
+            <td><%= link_to g.title, g %>
+              [
+              <% if g.group_category_radio.to_s == "1" %>
+                ４択クイズ
+              <% elsif  g.group_category_radio.to_s == "2" %>
+                パターン診断
+              <% end %>
+              ]</td>
+            <td>
                 <%= g.user.name %>
-              </td><td><%= g.updated_at %></td>
+              </td>
+              <td><%= g.updated_at %></td>
           </tr>
         <% end %>
       </tbody>
