@@ -23,8 +23,12 @@ class UsersController < ApplicationController
   def edit
     @title = "ユーザー情報の編集|Groupquiz:クイズで楽しく情報共有"
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.html
+    if User.find(params[:id]) == User.find(session[:user_id]) then
+      respond_to do |format|
+        format.html
+      end
+    else
+      redirect_to @user
     end
   end
 
