@@ -7,6 +7,6 @@ class CreateBelongsToGroups < ActiveRecord::Migration
     end
     add_index :belongs_to_groups, :user_id
     add_index :belongs_to_groups, :group_id
-    add_index :belongstogroups, [:user_id, :group_id], unique: true
+    add_index :belongs_to_groups, [:user_id, :group_id], unique: true
   end
 end
